@@ -57,8 +57,8 @@ activities:
 
 ### Files
 
-- **Workflow Definition**: [`py/examples/01_weather_report.py.yaml`](../py/examples/01_weather_report.py.yaml)
-- **Worker Implementation**: [`py/examples/01_weather_report.py`](../py/examples/01_weather_report.py) *(optional - shows how to run it)*
+- **Workflow Definition**: [`py/examples/01_weather_report.yaml`](https://github.com/kruxia/kruxiaflow/tree/main/py/examples/01_weather_report.yaml)
+- **Worker Implementation**: [`py/examples/01_weather_report.py`](https://github.com/kruxia/kruxiaflow/tree/main/py/examples/01_weather_report.py) *(optional - shows how to run it)*
 
 ### Messaging for Landing Page
 
@@ -124,8 +124,8 @@ activities:
 
 ### Files
 
-- **Workflow Definition**: [`py/examples/15_content_moderation_system.py.yaml`](../py/examples/15_content_moderation_system.py.yaml)
-- **Worker Implementation**: [`py/examples/15_content_moderation_system.py`](../py/examples/15_content_moderation_system.py) *(optional)*
+- **Workflow Definition**: [`py/examples/15_content_moderation_system.yaml`](https://github.com/kruxia/kruxiaflow/tree/main/py/examples/15_content_moderation_system.yaml)
+- **Worker Implementation**: [`py/examples/15_content_moderation_system.py`](https://github.com/kruxia/kruxiaflow/tree/main/py/examples/15_content_moderation_system.py) *(optional)*
 
 ### Messaging for Landing Page
 
@@ -208,8 +208,8 @@ activities:
 
 ### Files
 
-- **Workflow Definition**: [`py/examples/12_sales_etl_pipeline.py.yaml`](../py/examples/12_sales_etl_pipeline.py.yaml)
-- **Python Script**: [`py/examples/12_sales_etl_pipeline.py`](../py/examples/12_sales_etl_pipeline.py) *(runs in provided py-std worker)*
+- **Workflow Definition**: [`py/examples/12_sales_etl_pipeline.yaml`](https://github.com/kruxia/kruxiaflow/tree/main/py/examples/12_sales_etl_pipeline.yaml)
+- **Python Script**: [`py/examples/12_sales_etl_pipeline.py`](https://github.com/kruxia/kruxiaflow/tree/main/py/examples/12_sales_etl_pipeline.py) *(runs in provided py-std worker)*
 
 ### Messaging for Landing Page
 
@@ -300,8 +300,8 @@ activities:
 
 ### Files
 
-- **Workflow Definition**: [`py/examples/13_customer_churn_prediction.py.yaml`](../py/examples/13_customer_churn_prediction.py.yaml)
-- **Python Script**: [`py/examples/13_customer_churn_prediction.py`](../py/examples/13_customer_churn_prediction.py) *(runs in provided py-std worker)*
+- **Workflow Definition**: [`py/examples/13_customer_churn_prediction.yaml`](https://github.com/kruxia/kruxiaflow/tree/main/py/examples/13_customer_churn_prediction.yaml)
+- **Python Script**: [`py/examples/13_customer_churn_prediction.py`](https://github.com/kruxia/kruxiaflow/tree/main/py/examples/13_customer_churn_prediction.py) *(runs in provided py-std worker)*
 
 ### Messaging for Landing Page
 
