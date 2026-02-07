@@ -215,6 +215,8 @@
         <!-- Nav Links -->
         <div class="hidden md:flex items-center gap-8">
           <a href="#features" class="text-text-secondary hover:text-amber text-sm font-medium transition-colors font-mono">Features</a>
+          <a href="#getstarted" class="text-text-secondary hover:text-amber text-sm font-medium transition-colors font-mono">Get Started</a>
+          <a href="#examples" class="text-text-secondary hover:text-amber text-sm font-medium transition-colors font-mono">Examples</a>
           <a href="#comparison" class="text-text-secondary hover:text-amber text-sm font-medium transition-colors font-mono">Comparison</a>
           <a href="https://github.com/kruxia/kruxiaflow" target="_blank" class="text-text-secondary hover:text-amber text-sm font-medium transition-colors font-mono">Docs</a>
         </div>
@@ -225,10 +227,28 @@
             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
             <span class="hidden sm:inline">GitHub</span>
           </a>
-          <a href="https://discord.gg/ZJAzygCq" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-amber hover:bg-amber-bright text-kruxia-black font-semibold text-sm transition-colors font-mono">
+          <a href="https://discord.gg/ZJAzygCq" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-amber hover:bg-amber-bright text-kruxia-black font-semibold text-sm transition-colors font-mono">
             Join Community
           </a>
+          <!-- Hamburger Button (mobile) -->
+          <button id="hamburger" class="md:hidden flex items-center justify-center w-10 h-10 text-text-secondary hover:text-amber transition-colors" aria-label="Open menu">
+            <svg id="hamburger-icon" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <svg id="close-icon" class="w-6 h-6 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </button>
         </div>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-kruxia-black/95 backdrop-blur-sm border-b border-kruxia-border">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-3">
+        <a href="#features" class="mobile-menu-link text-text-secondary hover:text-amber text-sm font-medium transition-colors font-mono py-2">Features</a>
+        <a href="#getstarted" class="mobile-menu-link text-text-secondary hover:text-amber text-sm font-medium transition-colors font-mono py-2">Get Started</a>
+        <a href="#examples" class="mobile-menu-link text-text-secondary hover:text-amber text-sm font-medium transition-colors font-mono py-2">Examples</a>
+        <a href="#comparison" class="mobile-menu-link text-text-secondary hover:text-amber text-sm font-medium transition-colors font-mono py-2">Comparison</a>
+        <a href="https://github.com/kruxia/kruxiaflow" target="_blank" class="mobile-menu-link text-text-secondary hover:text-amber text-sm font-medium transition-colors font-mono py-2">Docs</a>
+        <a href="https://discord.gg/ZJAzygCq" target="_blank" class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-amber hover:bg-amber-bright text-kruxia-black font-semibold text-sm transition-colors font-mono mt-1">
+          Join Community
+        </a>
       </div>
     </div>
   </nav>
@@ -237,29 +257,30 @@
   <section class="min-h-screen flex flex-col justify-center pt-24 pb-16 relative grid-bg">
     <div class="depth-gradient absolute inset-0 pointer-events-none"></div>
     <div class="max-w-6xl mx-auto px-6 relative z-10">
-      <!-- Status Badge -->
-      <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-kruxia-surface border border-kruxia-border text-sm font-mono mb-8 opacity-0 animate-fade-in" style="animation-delay: 0.1s; animation-fill-mode: forwards;">
-        <span class="status-dot"></span>
-        <span class="text-amber">OPEN SOURCE</span>
-        <span class="text-text-disabled">·</span>
-        <span class="text-text-tertiary">AGPL-3.0</span>
-      </div>
-      
-      <!-- Headline -->
-      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight text-text-primary mb-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s; animation-fill-mode: forwards;">
-        Durable AI workflows,<br>
-        <span class="text-amber">built-in cost controls</span>
-      </h1>
+      <div class="max-w-2xl mx-auto">
+        <!-- Status Badge -->
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-kruxia-surface border border-kruxia-border text-sm font-mono mb-8 opacity-0 animate-fade-in" style="animation-delay: 0.1s; animation-fill-mode: forwards;">
+          <span class="status-dot"></span>
+          <span class="text-amber">OPEN SOURCE</span>
+          <span class="text-text-disabled">·</span>
+          <span class="text-text-tertiary">AGPL-3.0 + MIT</span>
+        </div>
 
-      <!-- Subtitle -->
-      <p class="text-lg text-text-secondary max-w-xl mb-12 leading-relaxed opacity-0 animate-fade-in-up" style="animation-delay: 0.3s; animation-fill-mode: forwards;">
-        Kruxia Flow is the only durable workflow engine built for AI.
-        Not only do workflows survive crashes, AI costs are budgeted,
-        tracked, and reported. And it runs anywhere in a 7.5&thinsp;MB binary.
-      </p>
-      
-      <!-- CTA Buttons -->
-      <div class="flex flex-wrap gap-4 mb-16 opacity-0 animate-fade-in-up" style="animation-delay: 0.4s; animation-fill-mode: forwards;">
+        <!-- Headline -->
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight text-text-primary mb-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s; animation-fill-mode: forwards;">
+          Durable workflows<br>
+          <span class="text-amber">with AI cost controls</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-lg text-text-secondary max-w-2xl mb-12 leading-relaxed opacity-0 animate-fade-in-up" style="animation-delay: 0.3s; animation-fill-mode: forwards;">
+          Kruxia Flow is the only durable workflow engine built for AI.
+          Our workflows survive crashes and budget and report AI costs. 
+          And it runs anywhere in a 7.5&thinsp;MB binary.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap gap-4 mb-16 opacity-0 animate-fade-in-up" style="animation-delay: 0.4s; animation-fill-mode: forwards;">
         <a href="https://github.com/kruxia/kruxiaflow#getting-started" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-amber hover:bg-amber-bright text-kruxia-black font-semibold transition-colors font-mono">
           ./get-started
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -268,19 +289,20 @@
           <svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
           Star on GitHub
         </a>
+        </div>
       </div>
-      
+
       <!-- Built For -->
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-12 border-t border-kruxia-border opacity-0 animate-fade-in-up" style="animation-delay: 0.5s; animation-fill-mode: forwards;">
-        <div class="flex flex-col gap-2">
+        <div class="bg-kruxia-surface border border-kruxia-border p-6 flex flex-col gap-2">
           <h3 class="text-lg font-semibold text-text-primary">AI startups</h3>
           <p class="text-[15px] text-text-secondary leading-relaxed">Ship AI agents to production with built-in cost tracking and budget control. Survive crashes, stop runaway spend.</p>
         </div>
-        <div class="flex flex-col gap-2">
+        <div class="bg-kruxia-surface border border-kruxia-border p-6 flex flex-col gap-2">
           <h3 class="text-lg font-semibold text-text-primary">Small businesses</h3>
           <p class="text-[15px] text-text-secondary leading-relaxed">Define workflows with no code, deploy one binary and one database: No cluster, no DevOps team. Production reliability for tens of dollars a month.</p>
         </div>
-        <div class="flex flex-col gap-2">
+        <div class="bg-kruxia-surface border border-kruxia-border p-6 flex flex-col gap-2">
           <h3 class="text-lg font-semibold text-text-primary">Data teams</h3>
           <p class="text-[15px] text-text-secondary leading-relaxed">Combine batch pipelines and AI agents in one platform. Python SDK with pandas and DuckDB, and without a 4GB footprint or a $1K/M vendor lock-in.</p>
         </div>
@@ -291,40 +313,44 @@
   <!-- Problem Section -->
   <section class="py-28 relative z-10 border-t border-kruxia-border section-gradient" id="problem">
     <div class="max-w-6xl mx-auto px-6">
-      <div class="max-w-2xl mb-16">
+      <div class="max-w-2xl mx-auto mb-16">
         <div class="inline-flex items-center gap-3 font-mono text-sm text-amber mb-4">
           <span class="text-text-tertiary">//</span>
           THE_PROBLEM
         </div>
-        <h2 class="text-4xl sm:text-5xl font-bold tracking-tight text-text-primary mb-6">AI in production is an unsolved problem.</h2>
+        <h2 class="text-4xl sm:text-5xl font-bold tracking-tight text-text-primary mb-6">
+          AI in production has been <br/>
+          an unsolved problem.
+        </h2>
         <p class="text-lg text-text-secondary leading-relaxed">
-          You need durable execution, cost controls, and operational simplicity. Today you have to pick one—or none.
+          You need durable execution, cost controls, and operational simplicity.<br/>
+          Until now you had to pick one, or none.
         </p>
       </div>
 
       <!-- Problem Cards -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-px lg:bg-kruxia-border reveal">
-        <div class="bg-kruxia-black py-6 lg:p-8 border-b border-kruxia-border lg:border-b-0">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 reveal">
+        <div class="bg-kruxia-surface border border-kruxia-border p-6">
           <div class="flex gap-5">
-            <div class="w-12 h-12 min-w-[48px] bg-kruxia-surface border border-red-500/30 flex items-center justify-center font-mono text-2xl text-red-500">$</div>
+            <div class="w-12 h-12 min-w-[48px] bg-kruxia-elevated border border-red-500/30 flex items-center justify-center font-mono text-2xl text-red-500">$</div>
             <div>
               <h3 class="text-lg font-semibold text-text-primary mb-2">Invisible AI spend</h3>
               <p class="text-[15px] text-text-secondary leading-relaxed">Teams with cost observability report 30–50% savings—but no workflow engine tracks LLM costs natively. You're left stitching together external tools with no budget control to stop a runaway agent.</p>
             </div>
           </div>
         </div>
-        <div class="bg-kruxia-black py-6 lg:p-8 border-b border-kruxia-border lg:border-b-0">
+        <div class="bg-kruxia-surface border border-kruxia-border p-6">
           <div class="flex gap-5">
-            <div class="w-12 h-12 min-w-[48px] bg-kruxia-surface border border-red-500/30 flex items-center justify-center font-mono text-2xl text-red-500">!</div>
+            <div class="w-12 h-12 min-w-[48px] bg-kruxia-elevated border border-red-500/30 flex items-center justify-center font-mono text-2xl text-red-500">!</div>
             <div>
               <h3 class="text-lg font-semibold text-text-primary mb-2">Temporal's operational tax</h3>
               <p class="text-[15px] text-text-secondary leading-relaxed">Temporal requires 7+ components to self-host, and teams report 8 engineering-months per year on maintenance. Airflow needs minimum 4&thinsp;GB RAM and managed hosting runs $360–$1,000+/month. Both have zero LLM awareness.</p>
             </div>
           </div>
         </div>
-        <div class="bg-kruxia-black py-6 lg:p-8">
+        <div class="bg-kruxia-surface border border-kruxia-border p-6">
           <div class="flex gap-5">
-            <div class="w-12 h-12 min-w-[48px] bg-kruxia-surface border border-red-500/30 flex items-center justify-center font-mono text-2xl text-red-500">×</div>
+            <div class="w-12 h-12 min-w-[48px] bg-kruxia-elevated border border-red-500/30 flex items-center justify-center font-mono text-2xl text-red-500">×</div>
             <div>
               <h3 class="text-lg font-semibold text-text-primary mb-2">LangGraph isn't a workflow engine</h3>
               <p class="text-[15px] text-text-secondary leading-relaxed">LangGraph handles AI agent loops, but it's Python-only, has no native scheduling, and requires the proprietary LangSmith platform for production—at ~$1,000 per million executions. For teams that need both AI and general workflows, that means running two systems.</p>
@@ -338,14 +364,14 @@
   <!-- Solution Section -->
   <section class="py-28 relative z-10 border-t border-kruxia-border section-gradient" id="features">
     <div class="max-w-6xl mx-auto px-6">
-      <div class="max-w-2xl mb-16">
+      <div class="max-w-2xl mx-auto mb-16">
         <div class="inline-flex items-center gap-3 font-mono text-sm text-amber mb-4">
           <span class="text-text-tertiary">//</span>
           THE_SOLUTION
         </div>
-        <h2 class="text-4xl sm:text-5xl font-bold tracking-tight text-text-primary mb-6">Durable execution meets AI cost control</h2>
+        <h2 class="text-4xl sm:text-5xl font-bold tracking-tight text-text-primary mb-6">Durable orchestration with built-in AI integration</h2>
         <p class="text-lg text-text-secondary leading-relaxed">
-          Kruxia Flow combines durable workflow orchestration with native LLM features—so you can ship AI to production with confidence.
+          Kruxia Flow combines durable workflow orchestration with native LLM features, so you can ship AI to production with confidence.
         </p>
       </div>
       
@@ -357,14 +383,7 @@
             <div class="w-12 h-12 min-w-[48px] bg-kruxia-surface border border-amber/30 flex items-center justify-center font-mono text-xl text-amber">◉</div>
             <div>
               <h3 class="text-lg font-semibold text-text-primary mb-2">Durable execution</h3>
-              <p class="text-[15px] text-text-secondary leading-relaxed">Workflows survive crashes, restart from where they left off, and guarantee exactly-once execution. Activities persist state and retry automatically with backoff. No more manual retry logic or lost progress.</p>
-            </div>
-          </div>
-          <div class="flex gap-5">
-            <div class="w-12 h-12 min-w-[48px] bg-kruxia-surface border border-amber/30 flex items-center justify-center font-mono text-xl text-amber">$</div>
-            <div>
-              <h3 class="text-lg font-semibold text-text-primary mb-2">Built-in cost tracking</h3>
-              <p class="text-[15px] text-text-secondary leading-relaxed">Every LLM call is metered. Monitor costs per workflow, per activity, per model. Query the metrics API for token usage, cost breakdowns, and budget status—feed the data into dashboards or alerts.</p>
+              <p class="text-[15px] text-text-secondary leading-relaxed">Workflows survive crashes, restart from where they left off, and deliver exactly-once execution. Activities persist state and retry automatically with backoff. No more manual retry logic or lost progress.</p>
             </div>
           </div>
           <div class="flex gap-5">
@@ -372,6 +391,13 @@
             <div>
               <h3 class="text-lg font-semibold text-text-primary mb-2">Budget control</h3>
               <p class="text-[15px] text-text-secondary leading-relaxed">Set soft or hard limits. Activities and workflows abort before exceeding their budget.</p>
+            </div>
+          </div>
+          <div class="flex gap-5">
+            <div class="w-12 h-12 min-w-[48px] bg-kruxia-surface border border-amber/30 flex items-center justify-center font-mono text-xl text-amber">$</div>
+            <div>
+              <h3 class="text-lg font-semibold text-text-primary mb-2">Cost tracking</h3>
+              <p class="text-[15px] text-text-secondary leading-relaxed">Every LLM call is metered. Monitor costs per workflow, per activity, per model. Query the metrics API for token usage, cost breakdowns, and budget status—feed the data into dashboards or alerts.</p>
             </div>
           </div>
           <div class="flex gap-5">
@@ -387,7 +413,7 @@
             </div>
             <div>
               <h3 class="text-lg font-semibold text-text-primary mb-2">Deploy anywhere</h3>
-              <p class="text-[15px] text-text-secondary leading-relaxed">A 7.5&thinsp;MB binary with PostgreSQL. Runs on a Raspberry Pi or your cloud. No cluster required.</p>
+              <p class="text-[15px] text-text-secondary leading-relaxed">A 7.5&thinsp;MB binary with PostgreSQL. Runs anywhere: on cloud VMs, on-premise computers, or edge devices like Raspberry Pi Zero. No cluster required.</p>
             </div>
           </div>
         </div>
@@ -403,7 +429,7 @@
             <span class="font-mono text-sm text-text-tertiary">workflow.yaml</span>
           </div>
           <div class="p-6 overflow-x-auto console-code">
-            <pre class="font-mono text-sm leading-relaxed"><span class="text-amber">activities</span><span class="text-text-tertiary">:</span>
+            <pre class="font-mono text-[0.8125rem] leading-relaxed"><span class="text-amber">activities</span><span class="text-text-tertiary">:</span>
   <span class="text-text-tertiary">-</span> <span class="text-amber">key</span><span class="text-text-tertiary">:</span> <span class="text-text-primary">analyze</span>
     <span class="text-amber">activity_name</span><span class="text-text-tertiary">:</span> <span class="text-text-primary">llm_prompt</span>
     <span class="text-amber">parameters</span><span class="text-text-tertiary">:</span>
@@ -428,7 +454,7 @@
   <!-- Get Started Section -->
   <section class="py-28 relative z-10 border-t border-kruxia-border section-gradient" id="getstarted">
     <div class="max-w-6xl mx-auto px-6">
-      <div class="max-w-2xl mb-12">
+      <div class="max-w-2xl mx-auto mb-12">
         <div class="inline-flex items-center gap-3 font-mono text-sm text-amber mb-4">
           <span class="text-text-tertiary">//</span>
           GET_STARTED
@@ -444,7 +470,9 @@
             <div class="w-8 h-8 min-w-[32px] bg-kruxia-elevated border border-kruxia-border flex items-center justify-center font-mono text-sm font-semibold text-amber">1</div>
             <div>
               <h4 class="font-semibold text-text-primary mb-1 font-mono">Clone and start</h4>
-              <p class="text-sm text-text-secondary">Run <code class="font-mono text-xs bg-amber/10 px-2 py-1 border border-amber/30 text-amber">./docker up --examples</code> to launch with PostgreSQL.</p>
+              <p class="text-sm text-text-secondary">Run <code class="font-mono text-xs
+              bg-amber/10 px-2 py-1 border border-amber/30 text-amber">./docker up --examples</code> 
+              to launch the kruxiaflow server with PostgreSQL and both provided workers.</p>
             </div>
           </div>
           <div class="flex gap-4 items-start">
@@ -469,7 +497,7 @@
               <p class="text-sm text-text-secondary mt-3">Cost output of the example run:</p>
               <div class="console rounded overflow-hidden mt-2">
                 <div class="px-4 py-2 overflow-x-auto console-code">
-                  <pre class="font-mono text-[13px] leading-relaxed"><span class="text-text-tertiary">[</span>
+                  <pre class="font-mono text-[0.8125rem] leading-relaxed"><span class="text-text-tertiary">[</span>
 <span class="text-text-tertiary">  {</span>
     <span class="text-amber">"activity_key"</span><span class="text-text-tertiary">:</span> <span class="text-text-primary">"analyze_content"</span><span class="text-text-tertiary">,</span>
     <span class="text-amber">"attempt"</span><span class="text-text-tertiary">:</span> <span class="text-amber-bright">1</span><span class="text-text-tertiary">,</span>
@@ -502,7 +530,7 @@
             <span class="font-mono text-sm text-text-tertiary">terminal</span>
           </div>
           <div class="p-6 overflow-x-auto console-code">
-            <pre class="font-mono text-sm leading-relaxed"><span class="text-text-disabled"># Clone and start</span>
+            <pre class="font-mono text-[0.8125rem] leading-relaxed"><span class="text-text-disabled"># Clone and start</span>
 <span class="text-amber">$</span> <span class="text-text-primary">git clone https://github.com/kruxia/kruxiaflow.git</span>
 <span class="text-amber">$</span> <span class="text-text-primary">cd kruxiaflow</span>
 <span class="text-amber">$</span> <span class="text-text-primary">./docker up --examples</span>
@@ -524,7 +552,8 @@
 <span class="text-amber">$</span> <span class="text-text-primary">WORKFLOW_ID=$(curl -s -X POST http://localhost:8080/api/v1/workflows \</span>
     <span class="text-text-primary">-H "Authorization: Bearer $TOKEN" \</span>
     <span class="text-text-primary">-H "Content-Type: application/json" \</span>
-    <span class="text-text-primary">-d '{"definition_name":"moderate_content","input":{"user_content":"Check out this amazing project!"}}' \</span>
+    <span class="text-text-primary">-d '{"definition_name":"moderate_content", "input":</span> \
+    <span class="text-text-primary">      {"user_content":"Check out this amazing project!"}}' \</span>
     <span class="text-text-primary">| jq -r '.workflow_id')</span>
 
 <span class="text-text-disabled"># Track costs</span>
@@ -560,14 +589,14 @@
   <!-- Examples Section -->
   <section class="py-28 relative z-10 border-t border-kruxia-border section-gradient" id="examples">
     <div class="max-w-6xl mx-auto px-6">
-      <div class="max-w-2xl mb-12">
+      <div class="max-w-2xl mx-auto mb-12">
         <div class="inline-flex items-center gap-3 font-mono text-sm text-amber mb-4">
           <span class="text-text-tertiary">//</span>
           EXAMPLES
         </div>
         <h2 class="text-4xl sm:text-5xl font-bold tracking-tight text-text-primary mb-6">Production-ready patterns</h2>
         <p class="text-lg text-text-secondary leading-relaxed">
-          15+ example workflows included. Start with built-in activities (no code required), add Python scripts when needed (we provide the worker).
+          15+ example workflows included. Start with built-in activities (no code required), add Python scripts when ready using the provided py-std worker.
         </p>
       </div>
       
@@ -604,7 +633,7 @@
                   <li class="flex items-center gap-2"><span class="text-amber">✓</span> No code required—just YAML</li>
                   <li class="flex items-center gap-2"><span class="text-amber">✓</span> HTTP requests, templates, and email built in</li>
                   <li class="flex items-center gap-2"><span class="text-amber">✓</span> Sequential workflows with activity dependencies</li>
-                  <li class="flex items-center gap-2"><span class="text-amber">✓</span> Ideal for SMBs and data engineers</li>
+                  <li class="flex items-center gap-2"><span class="text-amber">✓</span> Ideal for small &amp; medium businesses and data engineers</li>
                 </ul>
                 <a href="https://github.com/kruxia/kruxiaflow/blob/main/examples/01-weather-report.yaml" target="_blank" class="inline-flex items-center gap-2 text-amber hover:text-amber-bright text-sm font-mono transition-colors">
                   View on GitHub
@@ -621,7 +650,7 @@
                   <a href="https://github.com/kruxia/kruxiaflow/blob/main/examples/01-weather-report.yaml" target="_blank" class="font-mono text-sm text-text-tertiary hover:text-amber transition-colors">01-weather-report.yaml</a>
                 </div>
                 <div class="p-5 overflow-x-auto console-code">
-                  <pre class="font-mono text-[13px] leading-relaxed"><span class="text-text-disabled"># YAML workflow - no code required</span>
+                  <pre class="font-mono text-[0.8125rem] leading-relaxed"><span class="text-text-disabled"># YAML workflow - no code required</span>
 <span class="text-amber">name</span><span class="text-text-tertiary">:</span> weather_report
 <span class="text-amber">activities</span><span class="text-text-tertiary">:</span>
   <span class="text-text-tertiary">-</span> <span class="text-amber">key</span><span class="text-text-tertiary">:</span> fetch_weather
@@ -678,7 +707,7 @@
                   <a href="https://github.com/kruxia/kruxiaflow/blob/main/examples/04-moderate-content.yaml" target="_blank" class="font-mono text-sm text-text-tertiary hover:text-amber transition-colors">04-moderate-content.yaml</a>
                 </div>
                 <div class="p-5 overflow-x-auto console-code">
-                  <pre class="font-mono text-[13px] leading-relaxed"><span class="text-amber">activities</span><span class="text-text-tertiary">:</span>
+                  <pre class="font-mono text-[0.8125rem] leading-relaxed"><span class="text-amber">activities</span><span class="text-text-tertiary">:</span>
   <span class="text-text-tertiary">-</span> <span class="text-amber">key</span><span class="text-text-tertiary">:</span> analyze_content
     <span class="text-amber">worker</span><span class="text-text-tertiary">:</span> std
     <span class="text-amber">activity_name</span><span class="text-text-tertiary">:</span> llm_prompt
@@ -750,7 +779,7 @@
                   <a href="https://github.com/kruxia/kruxiaflow/blob/main/py/examples/12_sales_etl_pipeline.py" target="_blank" class="font-mono text-sm text-text-tertiary hover:text-amber transition-colors">12_sales_etl_pipeline.py</a>
                 </div>
                 <div class="p-5 overflow-x-auto console-code">
-                  <pre class="font-mono text-[13px] leading-relaxed"><span class="text-text-disabled"># Python SDK with ScriptActivity</span>
+                  <pre class="font-mono text-[0.8125rem] leading-relaxed"><span class="text-text-disabled"># Python SDK with ScriptActivity</span>
 <span class="text-amber">from</span> kruxiaflow <span class="text-amber">import</span> ScriptActivity<span class="text-text-tertiary">,</span> Workflow
 
 <span class="text-text-disabled"># SQL transformation using DuckDB</span>
@@ -808,7 +837,7 @@
                   <a href="https://github.com/kruxia/kruxiaflow/blob/main/py/examples/13_customer_churn_prediction.py" target="_blank" class="font-mono text-sm text-text-tertiary hover:text-amber transition-colors">13_customer_churn_prediction.py</a>
                 </div>
                 <div class="p-5 overflow-x-auto console-code">
-                  <pre class="font-mono text-[13px] leading-relaxed"><span class="text-text-disabled"># Python SDK with ML training</span>
+                  <pre class="font-mono text-[0.8125rem] leading-relaxed"><span class="text-text-disabled"># Python SDK with ML training</span>
 <span class="text-amber">from</span> kruxiaflow <span class="text-amber">import</span> ScriptActivity<span class="text-text-tertiary">,</span> Workflow
 
 <span class="text-text-disabled"># Train Random Forest model</span>
@@ -846,7 +875,7 @@
   <!-- Comparison Section -->
   <section class="py-28 relative z-10 border-t border-kruxia-border section-gradient" id="comparison">
     <div class="max-w-6xl mx-auto px-6">
-      <div class="max-w-2xl mb-16">
+      <div class="max-w-2xl mx-auto mb-16">
         <div class="inline-flex items-center gap-3 font-mono text-sm text-amber mb-4">
           <span class="text-text-tertiary">//</span>
           COMPARISON
@@ -917,29 +946,22 @@
                 <td class="text-text-primary">Throughput</td>
                 <td class="text-amber font-semibold">93 wf/s</td>
                 <td class="text-text-tertiary">66 wf/s</td>
-                <td class="text-text-tertiary">N/A</td>
+                <td class="text-text-tertiary">Not tested</td>
                 <td class="text-text-tertiary">N/A</td>
               </tr>
               <tr>
                 <td class="text-text-primary">Binary size</td>
                 <td class="text-amber font-semibold">7.5 MB</td>
                 <td class="text-text-tertiary">~200 MB</td>
-                <td class="text-text-tertiary">N/A</td>
+                <td class="text-text-tertiary">Not tested</td>
                 <td class="text-text-tertiary">N/A</td>
               </tr>
               <tr>
                 <td class="text-text-primary">Peak memory</td>
                 <td class="text-amber font-semibold">328 MB</td>
                 <td class="text-text-tertiary">~425 MB</td>
+                <td class="text-text-tertiary">Not tested</td>
                 <td class="text-text-tertiary">N/A</td>
-                <td class="text-text-tertiary">N/A</td>
-              </tr>
-              <tr>
-                <td class="text-text-primary">Proven scale</td>
-                <td class="text-text-tertiary">New</td>
-                <td class="text-amber font-semibold">450K+ act/s</td>
-                <td class="text-text-tertiary">Early</td>
-                <td class="text-amber font-semibold">Klarna, Uber</td>
               </tr>
               <tr>
                 <td class="text-text-primary">SDK languages</td>
@@ -949,15 +971,15 @@
                 <td class="text-text-tertiary">Python, JS</td>
               </tr>
               <tr>
-                <td class="text-text-primary">Ecosystem</td>
+                <td class="text-text-primary">GitHub stars</td>
                 <td class="text-text-tertiary">New</td>
-                <td class="text-amber font-semibold">183K devs/wk</td>
-                <td class="text-text-tertiary">~6K stars</td>
-                <td class="text-amber font-semibold">4.2M dl/mo</td>
+                <td class="text-amber font-semibold">18.2K</td>
+                <td class="text-text-tertiary">4.8K</td>
+                <td class="text-amber font-semibold">24.4K</td>
               </tr>
               <tr>
-                <td class="text-text-primary">License</td>
-                <td class="text-amber font-semibold">AGPL-3.0</td>
+                <td class="text-text-primary">Open Source</td>
+                <td class="text-amber font-semibold">AGPL-3.0 + MIT</td>
                 <td class="text-amber font-semibold">MIT</td>
                 <td class="text-text-tertiary">SSPL</td>
                 <td class="text-amber font-semibold">MIT</td>
@@ -971,37 +993,39 @@
   </section>
 
   <!-- Community Section -->
-  <section class="py-28 relative z-10 border-t border-kruxia-border section-gradient text-center" id="community">
+  <section class="py-28 relative z-10 border-t border-kruxia-border section-gradient" id="community">
     <div class="max-w-6xl mx-auto px-6">
-      <div class="inline-flex items-center gap-3 font-mono text-sm text-amber mb-4 justify-center">
-        <span class="text-text-tertiary">//</span>
-        COMMUNITY
+      <div class="max-w-2xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-3 font-mono text-sm text-amber mb-4">
+          <span class="text-text-tertiary">//</span>
+          COMMUNITY
+        </div>
+        <h2 class="text-4xl sm:text-5xl font-bold tracking-tight text-text-primary mb-6">Join the project</h2>
+        <p class="text-lg text-text-secondary leading-relaxed">
+          Kruxia Flow is open source. We're building in the open and welcome contributors.
+        </p>
       </div>
-      <h2 class="text-4xl sm:text-5xl font-bold tracking-tight text-text-primary mb-6">Join the project</h2>
-      <p class="text-lg text-text-secondary max-w-xl mx-auto leading-relaxed mb-12">
-        Kruxia Flow is open source. We're building in the open and welcome contributors.
-      </p>
       
       <!-- Community Cards -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-px bg-kruxia-border max-w-3xl mx-auto reveal">
-        <a href="https://github.com/kruxia/kruxiaflow" target="_blank" class="bg-kruxia-black p-8 transition-all duration-300 community-card group">
-          <div class="w-14 h-14 bg-kruxia-surface border border-kruxia-border flex items-center justify-center mx-auto mb-5 text-text-tertiary group-hover:text-amber group-hover:border-amber/30 transition-all">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 reveal">
+        <a href="https://github.com/kruxia/kruxiaflow" target="_blank" class="bg-kruxia-surface border border-kruxia-border p-8 text-center transition-all duration-300 community-card group">
+          <div class="w-14 h-14 bg-kruxia-elevated border border-kruxia-border flex items-center justify-center mx-auto mb-5 text-text-tertiary group-hover:text-amber group-hover:border-amber/30 transition-all">
             <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
           </div>
           <h3 class="text-lg font-semibold text-text-primary mb-2 font-mono">GitHub</h3>
           <p class="text-sm text-text-tertiary">Star the repo, open issues, submit PRs</p>
         </a>
-        
-        <a href="https://discord.gg/ZJAzygCq" target="_blank" class="bg-kruxia-black p-8 transition-all duration-300 community-card group">
-          <div class="w-14 h-14 bg-kruxia-surface border border-kruxia-border flex items-center justify-center mx-auto mb-5 text-text-tertiary group-hover:text-amber group-hover:border-amber/30 transition-all">
+
+        <a href="https://discord.gg/ZJAzygCq" target="_blank" class="bg-kruxia-surface border border-kruxia-border p-8 text-center transition-all duration-300 community-card group">
+          <div class="w-14 h-14 bg-kruxia-elevated border border-kruxia-border flex items-center justify-center mx-auto mb-5 text-text-tertiary group-hover:text-amber group-hover:border-amber/30 transition-all">
             <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
           </div>
           <h3 class="text-lg font-semibold text-text-primary mb-2 font-mono">Discord</h3>
           <p class="text-sm text-text-tertiary">Chat with the community, get help</p>
         </a>
-        
-        <a href="https://bsky.app/profile/kruxia.com" target="_blank" class="bg-kruxia-black p-8 transition-all duration-300 community-card group">
-          <div class="w-14 h-14 bg-kruxia-surface border border-kruxia-border flex items-center justify-center mx-auto mb-5 text-text-tertiary group-hover:text-amber group-hover:border-amber/30 transition-all">
+
+        <a href="https://bsky.app/profile/kruxia.com" target="_blank" class="bg-kruxia-surface border border-kruxia-border p-8 text-center transition-all duration-300 community-card group">
+          <div class="w-14 h-14 bg-kruxia-elevated border border-kruxia-border flex items-center justify-center mx-auto mb-5 text-text-tertiary group-hover:text-amber group-hover:border-amber/30 transition-all">
             <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.87-1.113 7.823-4.308.953 3.195 2.05 9.271 7.733 4.308 4.267-4.308 1.172-6.498-2.74-7.078a8.741 8.741 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.478 0-.69-.139-1.861-.902-2.206-.659-.298-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8Z"/></svg>
           </div>
           <h3 class="text-lg font-semibold text-text-primary mb-2 font-mono">Bluesky</h3>
@@ -1036,8 +1060,11 @@
         </div>
         
         <div class="font-mono text-sm text-text-disabled">
-          Built with Rust + PostgreSQL
+          Built with <a href="https://www.rust-lang.org" target="_blank" class="text-text-disabled hover:text-amber transition-colors">Rust</a> + <a href="https://www.postgresql.org" target="_blank" class="text-text-disabled hover:text-amber transition-colors">PostgreSQL</a>
         </div>
+      </div>
+      <div class="mt-8 pt-6 border-t border-kruxia-border">
+        <p class="font-mono text-xs text-text-disabled text-center">All product names, logos, and brands are property of their respective owners. Use of these names does not imply endorsement.</p>
       </div>
     </div>
   </footer>
@@ -1072,6 +1099,30 @@
 
     document.querySelectorAll('.reveal').forEach(el => {
       observer.observe(el);
+    });
+
+    // Mobile menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden');
+      hamburgerIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+      hamburger.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+    });
+
+    // Close mobile menu when a link is clicked
+    document.querySelectorAll('.mobile-menu-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        hamburgerIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+        hamburger.setAttribute('aria-label', 'Open menu');
+      });
     });
 
     // Example tabs functionality
