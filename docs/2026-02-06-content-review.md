@@ -111,7 +111,7 @@ The landing page correctly shows AGPL-3.0, which refers to the core server proje
 **Analysis:** The reviewer's own assessment is correct — it does not. The 7.5 MB figure describes the Rust server binary. The Python SDK is a client-side package that talks to the server over HTTP. They are separate deployment artifacts:
 
 - **Server:** 7.5 MB Rust binary + PostgreSQL
-- **Client (optional):** `pip install kruxiaflow` Python SDK
+- **Client (optional):** `pip install git+https://github.com/kruxia/kruxiaflow-python.git` Python SDK
 
 **Recommendation:** No change needed to the landing page. The current presentation is clear: the binary size and "deploy anywhere" messaging refer to the server. The Python SDK appears in the "Get Started" section as a developer tool, not a deployment dependency. If desired, a parenthetical could be added to the Python SDK card: "(client library — the server is the 7.5 MB binary)" — but this may over-explain.
 

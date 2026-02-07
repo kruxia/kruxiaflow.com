@@ -355,7 +355,7 @@ The current Problem section uses the 30–50% savings stat, which is sourced fro
 - **4-step walkthrough** with clear instructions (Clone → Token → Deploy → Track costs)
 - **Full terminal code block** with actual commands from README
 - **DX highlights section** showing:
-  - ⚡ Python SDK (`pip install kruxiaflow`)
+  - ⚡ Python SDK (`pip install git+https://github.com/kruxia/kruxiaflow-python.git`)
   - 📦 15+ Examples (production-ready patterns)
   - 🎯 Zero Complexity (no cluster, no Kafka)
 
@@ -384,7 +384,7 @@ cd kruxiaflow
     </pre>
   </div>
   <div class="dx-highlights">
-    <div>✓ Python SDK: pip install kruxiaflow</div>
+    <div>✓ Python SDK: pip install git+https://github.com/kruxia/kruxiaflow-python.git</div>
     <div>✓ 15+ production-ready examples</div>
     <div>✓ No cluster. No Kafka. No complexity.</div>
   </div>
@@ -467,7 +467,7 @@ cd kruxiaflow
 **Issue**: No mention of SDKs or how to build workers.
 
 **From docs**:
-- Python SDK available: `pip install kruxiaflow`
+- Python SDK available: `pip install git+https://github.com/kruxia/kruxiaflow-python.git`
 - Language-agnostic HTTP worker protocol
 - Custom workers in any language
 - Workers poll via API—no database access required
@@ -480,7 +480,7 @@ cd kruxiaflow
   <div>
     <h3>Language-agnostic workers</h3>
     <p>
-      Built-in Python SDK (<code>pip install kruxiaflow</code>).
+      Built-in Python SDK (<code>pip install git+https://github.com/kruxia/kruxiaflow-python.git</code>).
       HTTP worker protocol means write custom workers in any language.
     </p>
     <p>
@@ -721,7 +721,7 @@ Build Workers in Any Language
 Kruxia Flow workers use a simple HTTP polling protocol—no database access needed.
 
 Built-in Python SDK:
-  pip install kruxiaflow
+  pip install git+https://github.com/kruxia/kruxiaflow-python.git
 
 Or build your own in any language:
   1. Poll /api/v1/workers/poll for activities
@@ -837,7 +837,7 @@ The only workflow engine that won't let you exceed your AI budget.
 5. Deploy anywhere
 
 **Suggested additions**:
-6. **Python SDK** - `pip install kruxiaflow` and start building
+6. **Python SDK** - `pip install git+https://github.com/kruxia/kruxiaflow-python.git` and start building
 7. **Language-agnostic** - Write workers in any language via HTTP
 8. **Token streaming** - Real-time LLM output via WebSocket
 9. **15+ Examples** - Production-ready workflows included

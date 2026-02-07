@@ -13,187 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'kruxia': {
-              'black': '#080808',
-              'darker': '#0c0c0c',
-              'dark': '#111111',
-              'surface': '#151515',
-              'elevated': '#1a1a1a',
-              'border': '#252525',
-              'border-bright': '#333333',
-            },
-            'amber': {
-              DEFAULT: '#E5A000',
-              'bright': '#FFDD33',
-              'dim': '#B38000',
-              'muted': '#8A6200',
-            },
-            'text': {
-              'primary': '#E8E8E8',
-              'secondary': '#A0A0A0',
-              'tertiary': '#848484',
-              'disabled': '#868686',
-            }
-          },
-          fontFamily: {
-            'sans': ['IBM Plex Sans', 'system-ui', 'sans-serif'],
-            'mono': ['IBM Plex Mono', 'monospace'],
-          },
-          animation: {
-            'fade-in': 'fadeIn 0.6s ease forwards',
-            'fade-in-up': 'fadeInUp 0.6s ease forwards',
-            'pulse-slow': 'pulse 3s ease-in-out infinite',
-          },
-          keyframes: {
-            fadeIn: {
-              '0%': { opacity: '0' },
-              '100%': { opacity: '1' },
-            },
-            fadeInUp: {
-              '0%': { opacity: '0', transform: 'translateY(12px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
-            },
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    body {
-      font-family: 'IBM Plex Sans', system-ui, sans-serif;
-      background: #080808;
-      -webkit-font-smoothing: antialiased;
-    }
-    
-    .font-mono {
-      font-family: 'IBM Plex Mono', monospace;
-    }
-    
-    /* Subtle grid background */
-    .grid-bg {
-      background-image: 
-        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-      background-size: 60px 60px;
-    }
-    
-    /* Subtle gradient overlay for depth */
-    .depth-gradient {
-      background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(229,160,0,0.03) 0%, transparent 50%);
-    }
-    
-    /* Status indicator */
-    .status-dot {
-      width: 6px;
-      height: 6px;
-      background: #E5A000;
-      border-radius: 50%;
-      box-shadow: 0 0 8px rgba(229,160,0,0.5);
-    }
-    
-    /* Console styling */
-    .console {
-      background: #0c0c0c;
-      border: 1px solid rgba(229, 160, 0, 0.2);
-    }
-    
-    .console-header {
-      background: #151515;
-      border-bottom: 1px solid rgba(229, 160, 0, 0.15);
-    }
-    
-    .console-code {
-      background: linear-gradient(rgba(229, 160, 0, 0.1), rgba(229, 160, 0, 0.1)), #0c0c0c;
-    }
-
-    .community-card:hover {
-      background: linear-gradient(rgba(229, 160, 0, 0.1), rgba(229, 160, 0, 0.1)), #0c0c0c;
-    }
-    
-    /* Table styling */
-    .data-table {
-      border-collapse: collapse;
-    }
-    
-    .data-table th {
-      text-align: left;
-      font-weight: 500;
-      font-size: 11px;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: #6B6B6B;
-      padding: 12px 16px;
-      border-bottom: 1px solid #252525;
-    }
-    
-    .data-table td {
-      padding: 14px 16px;
-      border-bottom: 1px solid #1a1a1a;
-      font-size: 13px;
-    }
-    
-    .data-table tr:hover td {
-      background: rgba(229,160,0,0.02);
-    }
-    
-    /* Custom scrollbar */
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: #0c0c0c; }
-    ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #454545; }
-    
-    /* Section gradient - charcoal to black */
-    .section-gradient {
-      background: linear-gradient(to bottom, #151515 0%, #080808 100%);
-    }
-    
-    /* Example tabs */
-    .example-tab {
-      color: #848484;
-      border: 1px solid #252525;
-    }
-
-    .example-tab:hover {
-      color: #E5A000;
-    }
-
-    .example-tab.active {
-      color: #E5A000;
-      background: rgba(229, 160, 0, 0.1);
-      border-color: rgba(229, 160, 0, 0.3);
-    }
-    
-    .example-panel {
-      display: block;
-    }
-    
-    .example-panel.hidden {
-      display: none;
-    }
-    
-    /* Scroll animations */
-    .reveal {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    /* Link styles */
-    a {
-      text-decoration: none;
-    }
-  </style>
+  <link rel="stylesheet" href="/src/style.css">
 </head>
 <body class="bg-kruxia-black text-text-primary leading-relaxed overflow-x-hidden">
 
@@ -211,7 +31,7 @@
           </svg>
           <span class="text-lg font-semibold tracking-tight">Kruxia <span class="text-amber font-normal">Flow</span></span>
         </a>
-        
+
         <!-- Nav Links -->
         <div class="hidden md:flex items-center gap-8">
           <a href="#features" class="text-text-secondary hover:text-amber text-sm font-medium transition-colors font-mono">Features</a>
@@ -220,7 +40,7 @@
           <a href="#comparison" class="text-text-secondary hover:text-amber text-sm font-medium transition-colors font-mono">Comparison</a>
           <a href="https://github.com/kruxia/kruxiaflow" target="_blank" class="text-text-secondary hover:text-amber text-sm font-medium transition-colors font-mono">Docs</a>
         </div>
-        
+
         <!-- CTAs -->
         <div class="flex items-center gap-3">
           <a href="https://github.com/kruxia/kruxiaflow" target="_blank" class="flex items-center gap-2 px-3 py-2 text-text-secondary hover:text-amber text-sm font-medium transition-colors font-mono">
@@ -262,7 +82,7 @@
         <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-kruxia-surface border border-kruxia-border text-sm font-mono mb-8 opacity-0 animate-fade-in" style="animation-delay: 0.1s; animation-fill-mode: forwards;">
           <span class="status-dot"></span>
           <span class="text-amber">OPEN SOURCE</span>
-          <span class="text-text-disabled">·</span>
+          <span class="text-text-disabled">&middot;</span>
           <span class="text-text-tertiary">AGPL-3.0 + MIT</span>
         </div>
 
@@ -275,7 +95,7 @@
         <!-- Subtitle -->
         <p class="text-lg text-text-secondary max-w-2xl mb-12 leading-relaxed opacity-0 animate-fade-in-up" style="animation-delay: 0.3s; animation-fill-mode: forwards;">
           Kruxia Flow is the only durable workflow engine built for AI.
-          Our workflows survive crashes and budget and report AI costs. 
+          Our workflows survive crashes and budget and report AI costs.
           And it runs anywhere in a 7.5&thinsp;MB binary.
         </p>
 
@@ -350,7 +170,7 @@
         </div>
         <div class="bg-kruxia-surface border border-kruxia-border p-6">
           <div class="flex gap-5">
-            <div class="w-12 h-12 min-w-[48px] bg-kruxia-elevated border border-red-500/30 flex items-center justify-center font-mono text-2xl text-red-500">×</div>
+            <div class="w-12 h-12 min-w-[48px] bg-kruxia-elevated border border-red-500/30 flex items-center justify-center font-mono text-2xl text-red-500">&times;</div>
             <div>
               <h3 class="text-lg font-semibold text-text-primary mb-2">LangGraph isn't a workflow engine</h3>
               <p class="text-[15px] text-text-secondary leading-relaxed">LangGraph handles AI agent loops, but it's Python-only, has no native scheduling, and requires the proprietary LangSmith platform for production—at ~$1,000 per million executions. For teams that need both AI and general workflows, that means running two systems.</p>
@@ -374,20 +194,20 @@
           Kruxia Flow combines durable workflow orchestration with native LLM features, so you can ship AI to production with confidence.
         </p>
       </div>
-      
+
       <!-- Features + Code Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <!-- Features List -->
         <div class="flex flex-col gap-8 reveal">
           <div class="flex gap-5">
-            <div class="w-12 h-12 min-w-[48px] bg-kruxia-surface border border-amber/30 flex items-center justify-center font-mono text-xl text-amber">◉</div>
+            <div class="w-12 h-12 min-w-[48px] bg-kruxia-surface border border-amber/30 flex items-center justify-center font-mono text-xl text-amber">&#9673;</div>
             <div>
               <h3 class="text-lg font-semibold text-text-primary mb-2">Durable execution</h3>
               <p class="text-[15px] text-text-secondary leading-relaxed">Workflows survive crashes, restart from where they left off, and deliver exactly-once execution. Activities persist state and retry automatically with backoff. No more manual retry logic or lost progress.</p>
             </div>
           </div>
           <div class="flex gap-5">
-            <div class="w-12 h-12 min-w-[48px] bg-kruxia-surface border border-amber/30 flex items-center justify-center font-mono text-xl text-amber">⊘</div>
+            <div class="w-12 h-12 min-w-[48px] bg-kruxia-surface border border-amber/30 flex items-center justify-center font-mono text-xl text-amber">&#8856;</div>
             <div>
               <h3 class="text-lg font-semibold text-text-primary mb-2">Budget control</h3>
               <p class="text-[15px] text-text-secondary leading-relaxed">Set soft or hard limits. Activities and workflows abort before exceeding their budget.</p>
@@ -401,7 +221,7 @@
             </div>
           </div>
           <div class="flex gap-5">
-            <div class="w-12 h-12 min-w-[48px] bg-kruxia-surface border border-amber/30 flex items-center justify-center font-mono text-xl text-amber">↻</div>
+            <div class="w-12 h-12 min-w-[48px] bg-kruxia-surface border border-amber/30 flex items-center justify-center font-mono text-xl text-amber">&#8635;</div>
             <div>
               <h3 class="text-lg font-semibold text-text-primary mb-2">Automatic model fallback</h3>
               <p class="text-[15px] text-text-secondary leading-relaxed">Claude down? Fall back to GPT. Opus too expensive for this request? Switch to Sonnet or a different provider. Configurable fallback chains keep workflows running.</p>
@@ -417,7 +237,7 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Code Block -->
         <div class="console rounded overflow-hidden reveal">
           <div class="console-header px-4 py-3 flex items-center gap-3">
@@ -471,7 +291,7 @@
             <div>
               <h4 class="font-semibold text-text-primary mb-1 font-mono">Clone and start</h4>
               <p class="text-sm text-text-secondary">Run <code class="font-mono text-xs
-              bg-amber/10 px-2 py-1 border border-amber/30 text-amber">./docker up --examples</code> 
+              bg-amber/10 px-2 py-1 border border-amber/30 text-amber">./docker up --examples</code>
               to launch the kruxiaflow server with PostgreSQL and both provided workers.</p>
             </div>
           </div>
@@ -568,7 +388,7 @@
         <div class="bg-kruxia-surface border border-kruxia-border p-6 text-center">
           <div class="w-12 h-12 bg-kruxia-elevated border border-amber/30 flex items-center justify-center mx-auto mb-4 font-mono text-lg text-amber">&gt;&gt;&gt;</div>
           <div class="font-mono text-sm text-text-primary mb-2">Python SDK</div>
-          <div class="text-xs text-text-secondary"><code class="font-mono bg-amber/10 px-2 py-0.5 border border-amber/30 text-amber">pip install kruxiaflow-python</code> <br/>— and build workflows in Python</div>
+          <div class="text-xs text-text-secondary"><code class="font-mono bg-amber/10 px-2 py-0.5 border border-amber/30 text-amber">pip install git+https://github.com/kruxia/kruxiaflow-python.git</code> <br/>— and build workflows in Python</div>
         </div>
         <div class="bg-kruxia-surface border border-kruxia-border p-6 text-center">
           <div class="w-12 h-12 bg-kruxia-elevated border border-amber/30 flex items-center justify-center mx-auto mb-4 text-amber">
@@ -578,7 +398,7 @@
           <div class="text-xs text-text-secondary">Clone, run, and copy production-ready workflow patterns</div>
         </div>
         <div class="bg-kruxia-surface border border-kruxia-border p-6 text-center">
-          <div class="w-12 h-12 bg-kruxia-elevated border border-amber/30 flex items-center justify-center mx-auto mb-4 font-mono text-xl text-amber">∅</div>
+          <div class="w-12 h-12 bg-kruxia-elevated border border-amber/30 flex items-center justify-center mx-auto mb-4 font-mono text-xl text-amber">&empty;</div>
           <div class="font-mono text-sm text-text-primary mb-2">Low Ops</div>
           <div class="text-xs text-text-secondary">One binary, one database. No cluster, no 8 engineering-months of maintenance</div>
         </div>
@@ -599,7 +419,7 @@
           15+ example workflows included. Start with built-in activities (no code required), add Python scripts when ready using the provided py-std worker.
         </p>
       </div>
-      
+
       <!-- Tabs -->
       <div class="reveal">
         <!-- Tab Buttons -->
@@ -617,7 +437,7 @@
             Churn Prediction
           </button>
         </div>
-        
+
         <!-- Tab Content -->
         <div class="example-panels">
           <!-- Weather Report -->
@@ -747,7 +567,7 @@
               </div>
             </div>
           </div>
-          
+
           <!-- Sales ETL -->
           <div class="example-panel hidden" data-panel="sales-etl">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
@@ -805,7 +625,7 @@
               </div>
             </div>
           </div>
-          
+
           <!-- Churn Prediction -->
           <div class="example-panel hidden" data-panel="churn-prediction">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
@@ -910,29 +730,29 @@
               <tr>
                 <td class="text-text-primary">LLM cost tracking</td>
                 <td class="text-amber font-bold">Yes</td>
-                <td class="text-text-disabled">—</td>
+                <td class="text-text-disabled">&mdash;</td>
                 <td class="text-text-tertiary">partial</td>
                 <td class="text-text-tertiary">via LangSmith</td>
               </tr>
               <tr>
                 <td class="text-text-primary">Budget control</td>
                 <td class="text-amber font-bold">Yes</td>
-                <td class="text-text-disabled">—</td>
-                <td class="text-text-disabled">—</td>
-                <td class="text-text-disabled">—</td>
+                <td class="text-text-disabled">&mdash;</td>
+                <td class="text-text-disabled">&mdash;</td>
+                <td class="text-text-disabled">&mdash;</td>
               </tr>
               <tr>
                 <td class="text-text-primary">Model fallback</td>
                 <td class="text-amber font-bold">Yes</td>
-                <td class="text-text-disabled">—</td>
+                <td class="text-text-disabled">&mdash;</td>
                 <td class="text-amber font-bold">Yes</td>
                 <td class="text-text-tertiary">partial</td>
               </tr>
               <tr>
                 <td class="text-text-primary">Token streaming</td>
                 <td class="text-amber font-bold">Yes</td>
-                <td class="text-text-disabled">—</td>
-                <td class="text-text-disabled">—</td>
+                <td class="text-text-disabled">&mdash;</td>
+                <td class="text-text-disabled">&mdash;</td>
                 <td class="text-amber font-bold">Yes</td>
               </tr>
               <tr>
@@ -1005,7 +825,7 @@
           Kruxia Flow is open source. We're building in the open and welcome contributors.
         </p>
       </div>
-      
+
       <!-- Community Cards -->
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 reveal">
         <a href="https://github.com/kruxia/kruxiaflow" target="_blank" class="bg-kruxia-surface border border-kruxia-border p-8 text-center transition-all duration-300 community-card group">
@@ -1050,7 +870,7 @@
             </svg>
             <span class="text-xl font-semibold tracking-tight">Kruxia <span class="text-amber font-normal">Flow</span></span>
           </a>
-          
+
           <!-- Footer Links -->
           <div class="flex gap-6 font-mono text-sm">
             <a href="https://github.com/kruxia/kruxiaflow" target="_blank" class="text-text-tertiary hover:text-amber transition-colors">Docs</a>
@@ -1058,7 +878,7 @@
             <a href="https://github.com/kruxia/kruxiaflow/blob/main/CONTRIBUTING.md" target="_blank" class="text-text-tertiary hover:text-amber transition-colors">Contributing</a>
           </div>
         </div>
-        
+
         <div class="font-mono text-sm text-text-disabled">
           Built with <a href="https://www.rust-lang.org" target="_blank" class="text-text-disabled hover:text-amber transition-colors">Rust</a> + <a href="https://www.postgresql.org" target="_blank" class="text-text-disabled hover:text-amber transition-colors">PostgreSQL</a>
         </div>
@@ -1069,83 +889,6 @@
     </div>
   </footer>
 
-  <script>
-    // Navbar scroll effect
-    const nav = document.getElementById('nav');
-    const navInner = document.getElementById('nav-inner');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        nav.classList.add('bg-kruxia-black/95', 'backdrop-blur-sm');
-        navInner.classList.add('border-kruxia-border');
-      } else {
-        nav.classList.remove('bg-kruxia-black/95', 'backdrop-blur-sm');
-        navInner.classList.remove('border-kruxia-border');
-      }
-    });
-
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.reveal').forEach(el => {
-      observer.observe(el);
-    });
-
-    // Mobile menu toggle
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const hamburgerIcon = document.getElementById('hamburger-icon');
-    const closeIcon = document.getElementById('close-icon');
-
-    hamburger.addEventListener('click', () => {
-      const isOpen = !mobileMenu.classList.contains('hidden');
-      mobileMenu.classList.toggle('hidden');
-      hamburgerIcon.classList.toggle('hidden');
-      closeIcon.classList.toggle('hidden');
-      hamburger.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
-    });
-
-    // Close mobile menu when a link is clicked
-    document.querySelectorAll('.mobile-menu-link').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        hamburgerIcon.classList.remove('hidden');
-        closeIcon.classList.add('hidden');
-        hamburger.setAttribute('aria-label', 'Open menu');
-      });
-    });
-
-    // Example tabs functionality
-    document.querySelectorAll('.example-tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        const targetPanel = tab.getAttribute('data-tab');
-        
-        // Update active tab
-        document.querySelectorAll('.example-tab').forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        
-        // Show target panel, hide others
-        document.querySelectorAll('.example-panel').forEach(panel => {
-          if (panel.getAttribute('data-panel') === targetPanel) {
-            panel.classList.remove('hidden');
-            panel.classList.add('active');
-          } else {
-            panel.classList.add('hidden');
-            panel.classList.remove('active');
-          }
-        });
-      });
-    });
-  </script>
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>
