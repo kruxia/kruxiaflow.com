@@ -4,7 +4,7 @@ date = 2026-02-09
 description = "In AI applications, LLM cost is an infrastructure concern."
 
 [taxonomies]
-tags = [ "ai", "rust", "workflows", "opensource",]
+tags = [ "ai", "rust", "workflows", "opensource"]
 
 [extra]
 author = "Sean Harrison"

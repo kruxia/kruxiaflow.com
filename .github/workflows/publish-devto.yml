@@ -87,7 +87,10 @@ jobs:
 
               title = metadata.get('title', 'Untitled')
               description = metadata.get('description', '')
-              tags = metadata.get('tags', [])
+
+              # Get tags from taxonomies (Zola format)
+              taxonomies = metadata.get('taxonomies', {})
+              tags = taxonomies.get('tags', [])
 
               # Prepare article payload
               article = {
