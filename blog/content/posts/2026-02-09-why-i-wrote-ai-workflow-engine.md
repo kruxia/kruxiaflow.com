@@ -70,5 +70,3 @@ Kruxia Flow is open source under AGPL-3.0. The core engine, LLM cost tracking, b
 I'm still building, and there's a lot of road ahead. But the foundation is solid, and I'm already using it in my own projects — which, after all, is why I built it in the first place.
 
 If any of this resonates, I'd be glad to have you take a look. The code is on [GitHub](https://github.com/kruxia/kruxiaflow), and there's a [Discord](https://discord.gg/ZJAzygCq) where I'm happy to talk about the design, the roadmap, or working with AI.
-
-–Sean
