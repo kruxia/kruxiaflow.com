@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}Posts tagged with #{{ term }} — {{ config.title }}{% endblock %}
+
+{% block content %}
+<div class="tag-page">
+  <h1>Posts tagged with <span class="tag-highlight">#{{ term }}</span></h1>
+
+  <ul class="post-list">
+    {% for page in pages | sort(attribute="date") | reverse %}
+    <li class="post-item">
+      <h2 class="post-title">
+        <a href="{{ page.permalink }}">{{ page.title }}</a>
+      </h2>
+      <div class="post-meta">
+        {{ page.date | date(format="%Y-%m-%d") }}
+        {% if page.extra.author %}
+          by {{ page.extra.author }}
+        {% endif %}
+      </div>
+      {% if page.description %}
+        <p class="post-excerpt">{{ page.description }}</p>
+      {% endif %}
+      {% if page.taxonomies.tags %}
+        <div class="tags">
+          {% for tag in page.taxonomies.tags %}
+            <a href="/blog/tags/{{ tag | slugify }}/" class="tag">#{{ tag }}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+
+  <!-- Pagination -->
+  {% if paginator %}
+    <div class="pagination">
+      {% if paginator.previous %}
+        <a href="{{ paginator.previous }}" class="pagination-link">← Previous</a>
+      {% endif %}
+      <span class="pagination-info">Page {{ paginator.page_num }} of {{ paginator.num_pages }}</span>
+      {% if paginator.next %}
+        <a href="{{ paginator.next }}" class="pagination-link">Next →</a>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
+
+<style>
+.tag-page {
+  max-width: 48rem;
+}
+
+.tag-highlight {
+  color: var(--color-amber);
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-kruxia-border);
+}
+
+.pagination-link {
+  color: var(--color-amber);
+  font-weight: 500;
+}
+
+.pagination-link:hover {
+  color: var(--color-amber-bright);
+}
+
+.pagination-info {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+}
+</style>
+{% endblock %}

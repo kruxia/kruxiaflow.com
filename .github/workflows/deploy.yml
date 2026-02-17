@@ -25,9 +25,20 @@ jobs:
           node-version: 22
           cache: npm
 
+      - name: Install Zola
+        uses: taiki-e/install-action@v2
+        with:
+          tool: zola@0.19.2
+
       - run: npm ci
 
       - run: npm run build
+
+      - name: Build blog
+        run: cd blog && zola build
+
+      - name: Merge blog into site
+        run: cp -r blog/public dist/blog
 
       - uses: actions/upload-pages-artifact@v3
         with:

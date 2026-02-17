@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{{ config.title }}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{{ config.description }}{% endblock %}">
+  <link rel="canonical" href="{% block canonical %}{{ config.base_url }}{% endblock %}" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{% block og_title %}{{ config.title }}{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}{{ config.description }}{% endblock %}">
+  <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+  <meta property="og:url" content="{% block og_url %}{{ config.base_url }}{% endblock %}">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="{{ get_url(path='main.css') }}" />
+
+  <!-- RSS Feed -->
+  <link rel="alternate" type="application/atom+xml" title="{{ config.title }}" href="{{ config.base_url }}/atom.xml" />
+</head>
+<body class="bg-kruxia-black text-text-primary leading-relaxed overflow-x-hidden">
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        Kruxia <span>Flow</span>
+      </a>
+      <div class="nav-links">
+        <a href="/">← Main Site</a>
+        <a href="/blog"{% if current_path == "/" %} class="active"{% endif %}>Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="https://github.com/kruxia/kruxiaflow" target="_blank">GitHub</a>
+        <a href="https://discord.gg/ZJAzygCq" target="_blank">Discord</a>
+        <a href="{{ config.base_url }}/atom.xml">RSS</a>
+      </div>
+      <p class="footer-text">
+        © 2026 Sean Harrison. Built with <a href="https://www.getzola.org/" target="_blank">Zola</a>.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

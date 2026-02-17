@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}{{ config.title }}{% endblock %}
+
+{% block content %}
+<div class="post-list-wrapper">
+  <h1>{{ section.title }}</h1>
+  <p class="subtitle">{{ section.description }}</p>
+
+  {% set posts_section = get_section(path="posts/_index.md") %}
+
+  <ul class="post-list">
+    {% for page in posts_section.pages | sort(attribute="date") | reverse %}
+    <li class="post-item">
+      <h2 class="post-title">
+        <a href="{{ page.permalink }}">{{ page.title }}</a>
+      </h2>
+      <div class="post-meta">
+        {{ page.date | date(format="%Y-%m-%d") }}
+        {% if page.extra.author %}
+          by {{ page.extra.author }}
+        {% endif %}
+      </div>
+      {% if page.description %}
+        <p class="post-excerpt">{{ page.description }}</p>
+      {% endif %}
+      {% if page.taxonomies.tags %}
+        <div class="tags">
+          {% for tag in page.taxonomies.tags %}
+            <a href="/blog/tags/{{ tag | slugify }}/" class="tag">#{{ tag }}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<style>
+.post-list-wrapper {
+  max-width: 48rem;
+}
+
+.subtitle {
+  color: var(--color-text-secondary);
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+}
+</style>
+{% endblock %}

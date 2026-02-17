@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Tags — {{ config.title }}{% endblock %}
+
+{% block content %}
+<div class="taxonomy-list">
+  <h1>Tags</h1>
+  <p class="subtitle">Explore posts by topic</p>
+
+  <div class="tags-grid">
+    {% for term in terms %}
+    <div class="tag-card">
+      <a href="{{ term.permalink }}">
+        <span class="tag-name">#{{ term.name }}</span>
+        <span class="tag-count">{{ term.pages | length }} post{% if term.pages | length > 1 %}s{% endif %}</span>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+.taxonomy-list {
+  max-width: 48rem;
+}
+
+.subtitle {
+  color: var(--color-text-secondary);
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+}
+
+.tags-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.tag-card {
+  background: var(--color-kruxia-surface);
+  border: 1px solid var(--color-kruxia-border);
+  border-radius: 4px;
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.tag-card:hover {
+  background: var(--color-kruxia-elevated);
+  border-color: var(--color-amber);
+}
+
+.tag-card a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.tag-name {
+  color: var(--color-amber);
+  font-weight: 600;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1rem;
+}
+
+.tag-count {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .tags-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+{% endblock %}

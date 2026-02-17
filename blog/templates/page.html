@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} — {{ config.title }}{% endblock %}
+{% block description %}{{ page.description }}{% endblock %}
+{% block canonical %}{{ page.permalink }}{% endblock %}
+{% block og_title %}{{ page.title }}{% endblock %}
+{% block og_description %}{{ page.description }}{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block og_url %}{{ page.permalink }}{% endblock %}
+
+{% block content %}
+<article class="post">
+  <header class="post-header">
+    <h1>{{ page.title }}</h1>
+    <div class="post-meta">
+      <time datetime="{{ page.date | date(format='%Y-%m-%dT%H:%M:%SZ') }}">
+        {{ page.date | date(format="%B %d, %Y") }}
+      </time>
+      {% if page.extra.author %}
+        <span class="separator">•</span>
+        <span class="author">{{ page.extra.author }}</span>
+      {% endif %}
+      {% if page.word_count %}
+        <span class="separator">•</span>
+        <span class="reading-time">{{ page.word_count / 200 | round(precision=0) | int }} min read</span>
+      {% endif %}
+    </div>
+    {% if page.taxonomies.tags %}
+      <div class="tags">
+        {% for tag in page.taxonomies.tags %}
+          <a href="/blog/tags/{{ tag | slugify }}/" class="tag">#{{ tag }}</a>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </header>
+
+  <div class="post-content">
+    {{ page.content | safe }}
+  </div>
+
+  {% if page.extra.canonical_url %}
+    <footer class="post-footer">
+      <p class="canonical-note">
+        Originally published at <a href="{{ page.extra.canonical_url }}" target="_blank">{{ page.extra.canonical_url }}</a>
+      </p>
+    </footer>
+  {% endif %}
+</article>
+
+<style>
+.post {
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.post-header {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--color-kruxia-border);
+}
+
+.post-meta {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.separator {
+  color: var(--color-text-tertiary);
+}
+
+.post-content {
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.post-content > * + * {
+  margin-top: 1rem;
+}
+
+.post-footer {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-kruxia-border);
+}
+
+.canonical-note {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .post-meta {
+    font-size: 0.8125rem;
+  }
+
+  .post-content {
+    font-size: 0.9375rem;
+  }
+}
+</style>
+{% endblock %}

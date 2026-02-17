@@ -1,0 +1,21 @@
+base_url = "https://kruxiaflow.com/blog"
+title = "Kruxia Flow Blog"
+description = "Writing about AI workflows, infrastructure, and building in public"
+default_language = "en"
+compile_sass = true
+build_search_index = true
+generate_feeds = true
+
+[markdown]
+highlight_code = true
+
+[markdown.highlighting]
+theme = "base16-ocean-dark"
+
+[[taxonomies]]
+name = "tags"
+template = "tags.html"
+
+[extra]
+author = "Sean Harrison"
+github = "kruxia/kruxiaflow"

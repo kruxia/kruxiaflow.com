@@ -1,0 +1,67 @@
+name: Publish to Dev.to
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'blog/content/posts/**'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v44
+        with:
+          files: blog/content/posts/**/*.md
+
+      - name: Publish to Dev.to
+        if: steps.changed-files.outputs.any_changed == 'true'
+        env:
+          DEVTO_TOKEN: ${{ secrets.DEV_TO_API_KEY }}
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            if [[ "$file" == blog/content/posts/* ]]; then
+              echo "Processing $file..."
+
+              # Extract frontmatter
+              title=$(grep -oP 'title\s*=\s*"\K[^"]+' "$file" | head -1)
+              description=$(grep -oP 'description\s*=\s*"\K[^"]+' "$file" | head -1)
+              canonical_url=$(grep -oP 'canonical_url\s*=\s*"\K[^"]+' "$file" | head -1)
+
+              # Extract tags from frontmatter
+              tags_line=$(grep -oP 'tags\s*=\s*\[\K[^\]]+' "$file")
+              tags=$(echo "$tags_line" | sed 's/"//g' | tr ',' '\n' | sed 's/^ *//;s/ *$//' | tr '\n' ',' | sed 's/,$//')
+
+              # Extract content (everything after the closing +++)
+              body=$(sed -n '/^+++$/,/^+++$/p' "$file" | tail -n +2 | sed '1d')
+
+              # Create JSON payload
+              json_payload=$(cat <<EOF
+              {
+                "article": {
+                  "title": "$title",
+                  "description": "$description",
+                  "body_markdown": "$body",
+                  "published": false,
+                  "tags": ["$tags"],
+                  "canonical_url": "$canonical_url"
+                }
+              }
+              EOF
+              )
+
+              # Publish to Dev.to
+              echo "Publishing '$title' to Dev.to..."
+              curl -X POST https://dev.to/api/articles \
+                -H "api-key: $DEVTO_TOKEN" \
+                -H "Content-Type: application/json" \
+                -d "$json_payload" \
+                -w "\nStatus: %{http_code}\n"
+            fi
+          done
