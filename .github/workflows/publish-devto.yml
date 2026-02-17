@@ -21,9 +21,14 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install python-frontmatter requests tomli
+          pip install requests tomli toml
 
-      - name: Publish changed posts to Dev.to
+      - name: Configure git
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+
+      - name: Publish/Update posts on Dev.to
         env:
           DEV_TO_API_KEY: ${{ secrets.DEV_TO_API_KEY }}
         run: |
@@ -31,9 +36,10 @@ jobs:
           import sys
           import glob
           import tomli
+          import toml
           import requests
-          import json
           import re
+          import subprocess
 
           api_key = os.environ.get('DEV_TO_API_KEY')
           if not api_key:
@@ -47,6 +53,8 @@ jobs:
           if not posts:
               print('No posts found')
               sys.exit(0)
+
+          updated_files = []
 
           for post_path in posts:
               print(f'Processing {post_path}...')
@@ -63,7 +71,7 @@ jobs:
               frontmatter_text, body = match.groups()
               metadata = tomli.loads(frontmatter_text)
 
-              # Skip posts without required fields
+              # Skip published posts
               if metadata.get('published'):
                   print(f'  Skipping {metadata.get("title", post_path)} (already published)')
                   continue
@@ -71,6 +79,7 @@ jobs:
               # Get extra fields
               extra = metadata.get('extra', {})
               canonical_url = extra.get('canonical_url')
+              devto_article_id = extra.get('devto_article_id')
 
               if not canonical_url:
                   print(f'  Skipping {metadata.get("title", post_path)} (no canonical_url)')
@@ -78,7 +87,6 @@ jobs:
 
               title = metadata.get('title', 'Untitled')
               description = metadata.get('description', '')
-              author = extra.get('author', '')
               tags = metadata.get('tags', [])
 
               # Prepare article payload
@@ -88,31 +96,78 @@ jobs:
                   'body_markdown': body,
                   'published': False,
                   'canonical_url': canonical_url,
-                  'tags': tags[:4] if tags else []  # Dev.to limits to 4 tags
+                  'tags': tags[:4] if tags else []
               }
 
               payload = {'article': article}
-
-              # POST to Dev.to
               headers = {
                   'api-key': api_key,
                   'Content-Type': 'application/json'
               }
 
               try:
-                  response = requests.post(
-                      'https://dev.to/api/articles',
-                      json=payload,
-                      headers=headers,
-                      timeout=10
-                  )
+                  if devto_article_id:
+                      # Update existing draft
+                      response = requests.patch(
+                          f'https://dev.to/api/articles/{devto_article_id}',
+                          json=payload,
+                          headers=headers,
+                          timeout=10
+                      )
 
-                  if response.status_code == 201:
-                      data = response.json()
-                      print(f'  ✓ Published as draft: {data.get("url", "https://dev.to/dashboard")}')
+                      if response.status_code == 200:
+                          data = response.json()
+                          print(f'  ✓ Updated draft: {data.get("url", "https://dev.to/dashboard")}')
+                      else:
+                          print(f'  ✗ Error {response.status_code}: {response.text}')
+
                   else:
-                      print(f'  ✗ Error {response.status_code}: {response.text}')
+                      # Create new draft
+                      response = requests.post(
+                          'https://dev.to/api/articles',
+                          json=payload,
+                          headers=headers,
+                          timeout=10
+                      )
+
+                      if response.status_code == 201:
+                          data = response.json()
+                          article_id = data.get('id')
+                          print(f'  ✓ Published as draft: {data.get("url", "https://dev.to/dashboard")}')
+
+                          # Update frontmatter with article ID
+                          if article_id:
+                              if 'extra' not in metadata:
+                                  metadata['extra'] = {}
+                              metadata['extra']['devto_article_id'] = article_id
+
+                              # Write updated frontmatter back to file
+                              new_frontmatter = toml.dumps(metadata)
+                              new_content = f'+++\n{new_frontmatter}+++\n{body}'
+
+                              with open(post_path, 'w', encoding='utf-8') as f:
+                                  f.write(new_content)
+
+                              updated_files.append(post_path)
+                              print(f'  → Saved article ID: {article_id}')
+                      else:
+                          print(f'  ✗ Error {response.status_code}: {response.text}')
 
               except Exception as e:
                   print(f'  ✗ Failed: {e}')
+
+          # Commit updated files with [skip ci]
+          if updated_files:
+              print(f'\nCommitting {len(updated_files)} updated file(s)...')
+              for file in updated_files:
+                  subprocess.run(['git', 'add', file], check=True)
+
+              subprocess.run([
+                  'git', 'commit',
+                  '-m', 'Update Dev.to article IDs [skip ci]'
+              ], check=True)
+
+              # Push changes
+              subprocess.run(['git', 'push'], check=True)
+              print('✓ Changes pushed to repository')
         shell: python
