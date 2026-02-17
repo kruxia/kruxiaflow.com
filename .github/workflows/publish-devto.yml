@@ -58,13 +58,17 @@ jobs:
                   print(f'  Skipping {post.metadata.get("title", post_path)} (already published)')
                   continue
 
-              if not post.metadata.get('canonical_url'):
+              # Get extra fields
+              extra = post.metadata.get('extra', {})
+              canonical_url = extra.get('canonical_url') or post.metadata.get('canonical_url', '')
+
+              if not canonical_url:
                   print(f'  Skipping {post.metadata.get("title", post_path)} (no canonical_url)')
                   continue
 
               title = post.metadata.get('title', 'Untitled')
               description = post.metadata.get('description', '')
-              canonical_url = post.metadata.get('canonical_url', '')
+              author = extra.get('author', '')
               tags = post.metadata.get('tags', [])
 
               # Prepare article payload
