@@ -26,35 +26,28 @@ jobs:
           DEVTO_TOKEN: ${{ secrets.DEV_TO_API_KEY }}
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            if [[ "$file" == blog/content/posts/* ]]; then
+            if [[ "$file" == blog/content/posts/* ]] && [[ "$file" != *"_index.md" ]]; then
               echo "Processing $file..."
 
-              # Extract frontmatter
-              title=$(grep -oP 'title\s*=\s*"\K[^"]+' "$file" | head -1)
-              description=$(grep -oP 'description\s*=\s*"\K[^"]+' "$file" | head -1)
-              canonical_url=$(grep -oP 'canonical_url\s*=\s*"\K[^"]+' "$file" | head -1)
+              # Extract frontmatter using awk for robustness
+              title=$(awk -F'"' '/^title = "/ {print $2}' "$file")
+              description=$(awk -F'"' '/^description = "/ {print $2}' "$file")
+              canonical_url=$(awk -F'"' '/^canonical_url = "/ {print $2}' "$file")
 
               # Extract tags from frontmatter
-              tags_line=$(grep -oP 'tags\s*=\s*\[\K[^\]]+' "$file")
-              tags=$(echo "$tags_line" | sed 's/"//g' | tr ',' '\n' | sed 's/^ *//;s/ *$//' | tr '\n' ',' | sed 's/,$//')
+              tags=$(sed -n '/^tags = \[/,/^\]/p' "$file" | sed 's/tags = \[//;s/\]//' | sed 's/"//g' | sed 's/, /,/g')
 
-              # Extract content (everything after the closing +++)
-              body=$(sed -n '/^+++$/,/^+++$/p' "$file" | tail -n +2 | sed '1d')
+              # Extract body markdown (everything after the closing +++)
+              body=$(awk '/^[+]{3}$/ {flag++; next} flag==2' "$file" | jq -Rs .)
 
-              # Create JSON payload
-              json_payload=$(cat <<EOF
-              {
-                "article": {
-                  "title": "$title",
-                  "description": "$description",
-                  "body_markdown": "$body",
-                  "published": false,
-                  "tags": ["$tags"],
-                  "canonical_url": "$canonical_url"
-                }
-              }
-              EOF
-              )
+              # Create JSON payload with proper escaping
+              json_payload=$(jq -n \
+                --arg title "$title" \
+                --arg description "$description" \
+                --arg body_markdown "$body" \
+                --arg canonical_url "$canonical_url" \
+                --arg tags "$tags" \
+                '{article: {title: $title, description: $description, body_markdown: $body_markdown, published: false, tags: ($tags | split(",")), canonical_url: $canonical_url}}')
 
               # Publish to Dev.to
               echo "Publishing '$title' to Dev.to..."
