@@ -30,9 +30,10 @@ jobs:
           import os
           import sys
           import glob
-          import frontmatter
+          import tomli
           import requests
           import json
+          import re
 
           api_key = os.environ.get('DEV_TO_API_KEY')
           if not api_key:
@@ -51,37 +52,40 @@ jobs:
               print(f'Processing {post_path}...')
 
               with open(post_path, 'r', encoding='utf-8') as f:
-                  post = frontmatter.load(f, handler=frontmatter.TOMLHandler())
+                  content = f.read()
 
-              # Debug: Print metadata structure
-              print(f'  Metadata keys: {list(post.metadata.keys())}')
-              if 'extra' in post.metadata:
-                  print(f'  Extra keys: {list(post.metadata["extra"].keys())}')
+              # Parse TOML frontmatter manually
+              match = re.match(r'^\+\+\+\n(.*?)\n\+\+\+\n(.*)$', content, re.DOTALL)
+              if not match:
+                  print(f'  Skipping {post_path} (invalid frontmatter format)')
+                  continue
+
+              frontmatter_text, body = match.groups()
+              metadata = tomli.loads(frontmatter_text)
 
               # Skip posts without required fields
-              if 'published' in post.metadata and post.metadata['published']:
-                  print(f'  Skipping {post.metadata.get("title", post_path)} (already published)')
+              if metadata.get('published'):
+                  print(f'  Skipping {metadata.get("title", post_path)} (already published)')
                   continue
 
               # Get extra fields
-              extra = post.metadata.get('extra', {})
-              canonical_url = extra.get('canonical_url') or post.metadata.get('canonical_url', '')
+              extra = metadata.get('extra', {})
+              canonical_url = extra.get('canonical_url')
 
               if not canonical_url:
-                  print(f'  Debug - Extra: {extra}')
-                  print(f'  Skipping {post.metadata.get("title", post_path)} (no canonical_url)')
+                  print(f'  Skipping {metadata.get("title", post_path)} (no canonical_url)')
                   continue
 
-              title = post.metadata.get('title', 'Untitled')
-              description = post.metadata.get('description', '')
+              title = metadata.get('title', 'Untitled')
+              description = metadata.get('description', '')
               author = extra.get('author', '')
-              tags = post.metadata.get('tags', [])
+              tags = metadata.get('tags', [])
 
               # Prepare article payload
               article = {
                   'title': title,
                   'description': description,
-                  'body_markdown': post.content,
+                  'body_markdown': body,
                   'published': False,
                   'canonical_url': canonical_url,
                   'tags': tags[:4] if tags else []  # Dev.to limits to 4 tags
