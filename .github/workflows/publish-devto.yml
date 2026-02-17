@@ -21,7 +21,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install python-frontmatter requests
+          pip install python-frontmatter requests tomli
 
       - name: Publish changed posts to Dev.to
         env:
@@ -51,7 +51,7 @@ jobs:
               print(f'Processing {post_path}...')
 
               with open(post_path, 'r', encoding='utf-8') as f:
-                  post = frontmatter.load(f)
+                  post = frontmatter.load(f, handler=frontmatter.TOMLHandler())
 
               # Debug: Print metadata structure
               print(f'  Metadata keys: {list(post.metadata.keys())}')
