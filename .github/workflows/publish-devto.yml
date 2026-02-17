@@ -1,60 +1,104 @@
 name: Publish to Dev.to
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
     paths:
-      - 'blog/content/posts/**'
+      - 'blog/content/posts/*.md'
+      - .github/workflows/publish-devto.yml
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v44
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          files: blog/content/posts/**/*.md
+          python-version: '3.11'
 
-      - name: Publish to Dev.to
-        if: steps.changed-files.outputs.any_changed == 'true'
-        env:
-          DEVTO_TOKEN: ${{ secrets.DEV_TO_API_KEY }}
+      - name: Install dependencies
         run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            if [[ "$file" == blog/content/posts/* ]] && [[ "$file" != *"_index.md" ]]; then
-              echo "Processing $file..."
+          pip install python-frontmatter requests
 
-              # Extract frontmatter using awk for robustness
-              title=$(awk -F'"' '/^title = "/ {print $2}' "$file")
-              description=$(awk -F'"' '/^description = "/ {print $2}' "$file")
-              canonical_url=$(awk -F'"' '/^canonical_url = "/ {print $2}' "$file")
+      - name: Publish changed posts to Dev.to
+        env:
+          DEVTO_API_KEY: ${{ secrets.DEV_TO_API_KEY }}
+        run: |
+          import os
+          import sys
+          import glob
+          import frontmatter
+          import requests
+          import json
 
-              # Extract tags from frontmatter
-              tags=$(sed -n '/^tags = \[/,/^\]/p' "$file" | sed 's/tags = \[//;s/\]//' | sed 's/"//g' | sed 's/, /,/g')
+          api_key = os.environ.get('DEVTO_API_KEY')
+          if not api_key:
+              print('ERROR: DEV_TO_API_KEY secret not set')
+              sys.exit(1)
 
-              # Extract body markdown (everything after the closing +++)
-              body=$(awk '/^[+]{3}$/ {flag++; next} flag==2' "$file" | jq -Rs .)
+          # Find all blog posts
+          posts = glob.glob('blog/content/posts/*.md')
+          posts = [p for p in posts if not p.endswith('_index.md')]
 
-              # Create JSON payload with proper escaping
-              json_payload=$(jq -n \
-                --arg title "$title" \
-                --arg description "$description" \
-                --arg body_markdown "$body" \
-                --arg canonical_url "$canonical_url" \
-                --arg tags "$tags" \
-                '{article: {title: $title, description: $description, body_markdown: $body_markdown, published: false, tags: ($tags | split(",")), canonical_url: $canonical_url}}')
+          if not posts:
+              print('No posts found')
+              sys.exit(0)
 
-              # Publish to Dev.to
-              echo "Publishing '$title' to Dev.to..."
-              curl -X POST https://dev.to/api/articles \
-                -H "api-key: $DEVTO_TOKEN" \
-                -H "Content-Type: application/json" \
-                -d "$json_payload" \
-                -w "\nStatus: %{http_code}\n"
-            fi
-          done
+          for post_path in posts:
+              print(f'Processing {post_path}...')
+
+              with open(post_path, 'r', encoding='utf-8') as f:
+                  post = frontmatter.load(f)
+
+              # Skip posts without required fields
+              if 'published' in post.metadata and post.metadata['published']:
+                  print(f'  Skipping {post.metadata.get("title", post_path)} (already published)')
+                  continue
+
+              if not post.metadata.get('canonical_url'):
+                  print(f'  Skipping {post.metadata.get("title", post_path)} (no canonical_url)')
+                  continue
+
+              title = post.metadata.get('title', 'Untitled')
+              description = post.metadata.get('description', '')
+              canonical_url = post.metadata.get('canonical_url', '')
+              tags = post.metadata.get('tags', [])
+
+              # Prepare article payload
+              article = {
+                  'title': title,
+                  'description': description,
+                  'body_markdown': post.content,
+                  'published': False,
+                  'canonical_url': canonical_url,
+                  'tags': tags[:4] if tags else []  # Dev.to limits to 4 tags
+              }
+
+              payload = {'article': article}
+
+              # POST to Dev.to
+              headers = {
+                  'api-key': api_key,
+                  'Content-Type': 'application/json'
+              }
+
+              try:
+                  response = requests.post(
+                      'https://dev.to/api/articles',
+                      json=payload,
+                      headers=headers,
+                      timeout=10
+                  )
+
+                  if response.status_code == 201:
+                      data = response.json()
+                      print(f'  ✓ Published as draft: {data.get("url", "https://dev.to/dashboard")}')
+                  else:
+                      print(f'  ✗ Error {response.status_code}: {response.text}')
+
+              except Exception as e:
+                  print(f'  ✗ Failed: {e}')
+        shell: python
