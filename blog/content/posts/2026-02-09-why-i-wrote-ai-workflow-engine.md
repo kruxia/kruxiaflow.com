@@ -2,11 +2,14 @@
 title = "Why I Wrote an AI Workflow Engine"
 date = 2026-02-09
 description = "In AI applications, LLM cost is an infrastructure concern."
+
 [taxonomies]
-tags = ["ai", "rust", "workflows", "opensource"]
+tags = [ "ai", "rust", "workflows", "opensource",]
+
 [extra]
 author = "Sean Harrison"
 canonical_url = "https://kruxiaflow.com/blog/posts/why-i-wrote-ai-workflow-engine/"
+devto_article_id = 3261120
 +++
 
 I kept building the same things over and over.
