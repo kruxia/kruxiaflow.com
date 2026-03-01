@@ -4,11 +4,12 @@ date = 2026-03-01
 description = "Kruxia Flow now supports external Python workers, bringing pandas, scikit-learn, and the full data science ecosystem into durable workflow execution."
 
 [taxonomies]
-tags = ["python", "ai", "workflows", "workers", "opensource"]
+tags = [ "python", "ai", "workflows", "workers", "opensource",]
 
 [extra]
 author = "Sean Harrison"
 canonical_url = "https://kruxiaflow.com/blog/posts/python-workers-for-ai-workflows/"
+devto_article_id = 3299233
 +++
 
 When I first built Kruxia Flow, the built-in worker handled everything. It ships inside the single Rust binary and executes standard activities — HTTP requests, database queries, LLM prompts, email — all with sub-millisecond dispatch overhead. For many workflows, that's all you need.
