@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kruxia Flow — AI-Native Durable Workflows</title>
-  <meta name="description" content="The workflow engine that tracks every token. Built-in LLM cost controls, durable execution, and a 7.5 MB binary that runs anywhere.">
-  <meta property="og:title" content="Kruxia Flow — AI-Native Durable Workflows">
-  <meta property="og:description" content="The workflow engine that tracks every token. Built-in LLM cost controls, durable execution, and a 7.5 MB binary that runs anywhere.">
+  <title>Kruxia Flow — Budgeted Workflows: Durable Execution with Hard Cost Limits</title>
+  <meta name="description" content="Put a spending limit on your agents. Budgeted workflows: durable execution with hard cost limits enforced in the engine — stop, downgrade, or ask a human when the budget runs out.">
+  <meta property="og:title" content="Kruxia Flow — Budgeted Workflows: Durable Execution with Hard Cost Limits">
+  <meta property="og:description" content="Put a spending limit on your agents. Budgeted workflows: durable execution with hard cost limits enforced in the engine — stop, downgrade, or ask a human when the budget runs out.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kruxiaflow.com">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -85,20 +85,21 @@
           <span class="status-dot"></span>
           <span class="text-amber">OPEN SOURCE</span>
           <span class="text-text-disabled">&middot;</span>
-          <span class="text-text-tertiary">AGPL-3.0 + MIT</span>
+          <span class="text-text-tertiary">Apache-2.0</span>
         </div>
 
         <!-- Headline -->
         <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight text-text-primary mb-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s; animation-fill-mode: forwards;">
-          Durable workflows<br>
-          <span class="text-amber">with AI cost controls</span>
+          Put a spending limit<br>
+          <span class="text-amber">on your agents</span>
         </h1>
 
         <!-- Subtitle -->
         <p class="text-lg text-text-secondary max-w-2xl mb-12 leading-relaxed opacity-0 animate-fade-in-up" style="animation-delay: 0.3s; animation-fill-mode: forwards;">
-          Kruxia Flow is the only durable workflow engine built for AI.
-          Our workflows survive crashes and budget and report AI costs.
-          And it runs anywhere in a 7.5&thinsp;MB binary.
+          Kruxia Flow runs budgeted workflows: durable execution with hard cost limits
+          enforced in the engine. Workflows stop, downgrade, or ask a human when the
+          budget runs out — and every token's cost lands in your own PostgreSQL.
+          One 7.5&thinsp;MB binary, one database.
         </p>
 
         <!-- CTA Buttons -->
@@ -117,16 +118,16 @@
       <!-- Built For -->
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-12 border-t border-kruxia-border opacity-0 animate-fade-in-up" style="animation-delay: 0.5s; animation-fill-mode: forwards;">
         <div class="bg-kruxia-surface border border-kruxia-border p-6 flex flex-col gap-2">
-          <h3 class="text-lg font-semibold text-text-primary">AI startups</h3>
-          <p class="text-[15px] text-text-secondary leading-relaxed">Ship AI agents to production with built-in cost tracking and budget control. Survive crashes, stop runaway spend.</p>
+          <h3 class="text-lg font-semibold text-text-primary">Stop at the limit</h3>
+          <p class="text-[15px] text-text-secondary leading-relaxed">Set a hard budget per workflow or per activity. The engine estimates cost before every LLM call and refuses to run anything that would exceed it.</p>
         </div>
         <div class="bg-kruxia-surface border border-kruxia-border p-6 flex flex-col gap-2">
-          <h3 class="text-lg font-semibold text-text-primary">Small businesses</h3>
-          <p class="text-[15px] text-text-secondary leading-relaxed">Define workflows with no code, deploy one binary and one database: No cluster, no DevOps team. Production reliability for tens of dollars a month.</p>
+          <h3 class="text-lg font-semibold text-text-primary">Downgrade under pressure</h3>
+          <p class="text-[15px] text-text-secondary leading-relaxed">Declare an ordered model list. As the budget tightens, the engine falls back to cheaper models instead of failing the run.</p>
         </div>
         <div class="bg-kruxia-surface border border-kruxia-border p-6 flex flex-col gap-2">
-          <h3 class="text-lg font-semibold text-text-primary">Data teams</h3>
-          <p class="text-[15px] text-text-secondary leading-relaxed">Combine batch pipelines and AI agents in one platform. Python SDK with pandas and DuckDB, and without a 4GB footprint or a $1K/M vendor lock-in.</p>
+          <h3 class="text-lg font-semibold text-text-primary">Ask a human</h3>
+          <p class="text-[15px] text-text-secondary leading-relaxed">Workflows suspend for approval and resume when signaled — even days later, surviving restarts while they wait.</p>
         </div>
       </div>
     </div>
@@ -141,12 +142,12 @@
           THE_PROBLEM
         </div>
         <h2 class="text-4xl sm:text-5xl font-bold tracking-tight text-text-primary mb-6">
-          AI in production has been <br/>
-          an unsolved problem.
+          Your agents can outspend you <br/>
+          before breakfast.
         </h2>
         <p class="text-lg text-text-secondary leading-relaxed">
-          You need durable execution, cost controls, and operational simplicity.<br/>
-          Until now you had to pick one, or none.
+          Agents make 3–10&times; more LLM calls than chatbots, and a retry loop at 2&thinsp;a.m. doesn't stop to ask.<br/>
+          The spend has to be governed where the work runs — in the engine.
         </p>
       </div>
 
@@ -156,8 +157,8 @@
           <div class="flex gap-5">
             <div class="w-12 h-12 min-w-[48px] bg-kruxia-elevated border border-red-500/30 flex items-center justify-center font-mono text-2xl text-red-500">$</div>
             <div>
-              <h3 class="text-lg font-semibold text-text-primary mb-2">Invisible AI spend</h3>
-              <p class="text-[15px] text-text-secondary leading-relaxed">Teams with cost observability report 30–50% savings—but no workflow engine tracks LLM costs natively. You're left stitching together external tools with no budget control to stop a runaway agent.</p>
+              <h3 class="text-lg font-semibold text-text-primary mb-2">Budgets live in gateways, not engines</h3>
+              <p class="text-[15px] text-text-secondary leading-relaxed">Gateways cap API keys — but a key-level cap can't tell a runaway loop from a busy day, can't pause one workflow for sign-off, and can't tell you what a job actually cost. No workflow engine enforces budgets natively.</p>
             </div>
           </div>
         </div>
@@ -191,9 +192,9 @@
           <span class="text-text-tertiary">//</span>
           THE_SOLUTION
         </div>
-        <h2 class="text-4xl sm:text-5xl font-bold tracking-tight text-text-primary mb-6">Durable orchestration with built-in AI integration</h2>
+        <h2 class="text-4xl sm:text-5xl font-bold tracking-tight text-text-primary mb-6">Cost-governed orchestration</h2>
         <p class="text-lg text-text-secondary leading-relaxed">
-          Kruxia Flow combines durable workflow orchestration with native LLM features, so you can ship AI to production with confidence.
+          Kruxia Flow makes budgets, per-token cost tracking, model fallback, and human approval gates engine primitives — durable workflows with the spend governed as carefully as the data.
         </p>
       </div>
 
@@ -211,8 +212,8 @@
           <div class="flex gap-5">
             <div class="w-12 h-12 min-w-[48px] bg-kruxia-surface border border-amber/30 flex items-center justify-center font-mono text-xl text-amber">&#8856;</div>
             <div>
-              <h3 class="text-lg font-semibold text-text-primary mb-2">Budget control</h3>
-              <p class="text-[15px] text-text-secondary leading-relaxed">Set soft or hard limits. Activities and workflows abort before exceeding their budget.</p>
+              <h3 class="text-lg font-semibold text-text-primary mb-2">Hard budget enforcement</h3>
+              <p class="text-[15px] text-text-secondary leading-relaxed">Set limits per activity or per workflow. The engine estimates each LLM call against published pricing and aborts anything that would exceed its budget — enforced before the call, not after the bill.</p>
             </div>
           </div>
           <div class="flex gap-5">
@@ -234,8 +235,8 @@
               <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </div>
             <div>
-              <h3 class="text-lg font-semibold text-text-primary mb-2">Deploy anywhere</h3>
-              <p class="text-[15px] text-text-secondary leading-relaxed">A 7.5&thinsp;MB binary with PostgreSQL. Runs anywhere: on cloud VMs, on-premise computers, or edge devices like Raspberry Pi Zero. No cluster required.</p>
+              <h3 class="text-lg font-semibold text-text-primary mb-2">Runs where your data lives</h3>
+              <p class="text-[15px] text-text-secondary leading-relaxed">A 7.5&thinsp;MB binary with PostgreSQL. Run it on a cloud VM, on-premise, or fully air-gapped with Ollama and local models — your workflows, costs, and data never leave your infrastructure. No cluster required.</p>
             </div>
           </div>
         </div>
@@ -455,7 +456,7 @@
                   <li class="flex items-center gap-2"><span class="text-amber">✓</span> No code required—just YAML</li>
                   <li class="flex items-center gap-2"><span class="text-amber">✓</span> HTTP requests, templates, and email built in</li>
                   <li class="flex items-center gap-2"><span class="text-amber">✓</span> Sequential workflows with activity dependencies</li>
-                  <li class="flex items-center gap-2"><span class="text-amber">✓</span> Ideal for small &amp; medium businesses and data engineers</li>
+                  <li class="flex items-center gap-2"><span class="text-amber">✓</span> Runs with no LLM API keys — an ideal first workflow</li>
                 </ul>
                 <a href="https://github.com/kruxia/kruxiaflow/blob/main/examples/01-weather-report.yaml" target="_blank" class="inline-flex items-center gap-2 text-amber hover:text-amber-bright text-sm font-mono transition-colors">
                   View on GitHub
@@ -704,7 +705,7 @@
         </div>
         <h2 class="text-4xl sm:text-5xl font-bold tracking-tight text-text-primary mb-6">How Kruxia Flow stacks up</h2>
         <p class="text-lg text-text-secondary leading-relaxed">
-          Kruxia Flow is a <span class="text-text-primary font-medium">durable execution engine</span>—in the same category as Temporal and Inngest, not batch schedulers like Airflow. The difference? We're built for AI from the ground up.
+          Kruxia Flow is a <span class="text-text-primary font-medium">durable execution engine</span>—in the same category as Temporal and Inngest, not batch schedulers like Airflow. The difference? The budget is a first-class primitive of the workflow itself.
         </p>
       </div>
 
@@ -737,11 +738,18 @@
                 <td class="text-text-tertiary">via LangSmith</td>
               </tr>
               <tr>
-                <td class="text-text-primary">Budget control</td>
+                <td class="text-text-primary">Hard budget enforcement</td>
+                <td class="text-amber font-bold">Per workflow</td>
+                <td class="text-text-disabled">&mdash;</td>
+                <td class="text-text-disabled">&mdash;</td>
+                <td class="text-text-disabled">&mdash;</td>
+              </tr>
+              <tr>
+                <td class="text-text-primary">Suspend for human approval</td>
                 <td class="text-amber font-bold">Yes</td>
-                <td class="text-text-disabled">&mdash;</td>
-                <td class="text-text-disabled">&mdash;</td>
-                <td class="text-text-disabled">&mdash;</td>
+                <td class="text-amber font-bold">Yes</td>
+                <td class="text-amber font-bold">Yes</td>
+                <td class="text-amber font-bold">Yes</td>
               </tr>
               <tr>
                 <td class="text-text-primary">Model fallback</td>
@@ -801,7 +809,7 @@
               </tr>
               <tr>
                 <td class="text-text-primary">Open Source</td>
-                <td class="text-amber font-semibold">AGPL-3.0 + MIT</td>
+                <td class="text-amber font-semibold">Apache-2.0</td>
                 <td class="text-amber font-semibold">MIT</td>
                 <td class="text-text-tertiary">SSPL</td>
                 <td class="text-amber font-semibold">MIT</td>
@@ -810,7 +818,7 @@
           </table>
         </div>
       </div>
-      <p class="text-sm text-text-disabled font-mono mt-4 reveal">Binary size and memory comparisons reflect benchmarks run on Kruxia hardward using comparable configurations. Temporal's footprint includes a multi-language runtime and cluster coordination layer. LangGraph requires the proprietary LangSmith platform (~$1,000/1M executions) for production deployment. Inngest SSPL license is not OSI-approved open source.</p>
+      <p class="text-sm text-text-disabled font-mono mt-4 reveal">Binary size and memory comparisons reflect benchmarks run on Kruxia hardware using comparable configurations. Temporal's footprint includes a multi-language runtime and cluster coordination layer. LangGraph requires the proprietary LangSmith platform (~$1,000/1M executions) for production deployment. Inngest's SSPL license is not OSI-approved open source.</p>
     </div>
   </section>
 
