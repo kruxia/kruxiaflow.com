@@ -257,8 +257,8 @@
     <span class="text-amber">activity_name</span><span class="text-text-tertiary">:</span> <span class="text-text-primary">llm_prompt</span>
     <span class="text-amber">parameters</span><span class="text-text-tertiary">:</span>
       <span class="text-amber">model</span><span class="text-text-tertiary">:</span>
-        <span class="text-text-tertiary">-</span> <span class="text-text-primary">anthropic/claude-sonnet-4-5</span>
-        <span class="text-text-tertiary">-</span> <span class="text-text-primary">openai/gpt-4o-mini</span>  <span class="text-text-disabled"># fallback</span>
+        <span class="text-text-tertiary">-</span> <span class="text-text-primary">anthropic/claude-sonnet-5</span>
+        <span class="text-text-tertiary">-</span> <span class="text-text-primary">openai/gpt-5.4-mini</span>  <span class="text-text-disabled"># fallback</span>
       <span class="text-amber">prompt</span><span class="text-text-tertiary">:</span> <span class="text-text-primary">"Analyze this document..."</span>
       <span class="text-amber">max_tokens</span><span class="text-text-tertiary">:</span> <span class="text-amber-bright">500</span>
     <span class="text-amber">settings</span><span class="text-text-tertiary">:</span>
@@ -292,24 +292,25 @@
           <div class="flex gap-4 items-start">
             <div class="w-8 h-8 min-w-[32px] bg-kruxia-elevated border border-kruxia-border flex items-center justify-center font-mono text-sm font-semibold text-amber">1</div>
             <div>
-              <h4 class="font-semibold text-text-primary mb-1 font-mono">Clone and start</h4>
-              <p class="text-sm text-text-secondary">Run <code class="font-mono text-xs
-              bg-amber/10 px-2 py-1 border border-amber/30 text-amber">./docker up --examples</code>
-              to launch the kruxiaflow server with PostgreSQL and both provided workers.</p>
+              <h4 class="font-semibold text-text-primary mb-1 font-mono">Fetch and start</h4>
+              <p class="text-sm text-text-secondary">One <code class="font-mono text-xs
+              bg-amber/10 px-2 py-1 border border-amber/30 text-amber">curl</code> and one
+              <code class="font-mono text-xs bg-amber/10 px-2 py-1 border border-amber/30 text-amber">docker compose up</code>
+              — no clone, no auth setup. Runs locally in dev mode, published to 127.0.0.1 only.</p>
             </div>
           </div>
           <div class="flex gap-4 items-start">
             <div class="w-8 h-8 min-w-[32px] bg-kruxia-elevated border border-kruxia-border flex items-center justify-center font-mono text-sm font-semibold text-amber">2</div>
             <div>
-              <h4 class="font-semibold text-text-primary mb-1 font-mono">Get an access token</h4>
-              <p class="text-sm text-text-secondary">Use the generated client credentials to authenticate via OAuth2.</p>
+              <h4 class="font-semibold text-text-primary mb-1 font-mono">Deploy a budgeted workflow</h4>
+              <p class="text-sm text-text-secondary">POST your YAML with a <code class="font-mono text-xs bg-amber/10 px-2 py-1 border border-amber/30 text-amber">budget.limit_usd</code> — the engine enforces it before every LLM call.</p>
             </div>
           </div>
           <div class="flex gap-4 items-start">
             <div class="w-8 h-8 min-w-[32px] bg-kruxia-elevated border border-kruxia-border flex items-center justify-center font-mono text-sm font-semibold text-amber">3</div>
             <div>
-              <h4 class="font-semibold text-text-primary mb-1 font-mono">Deploy and run a workflow</h4>
-              <p class="text-sm text-text-secondary">POST the YAML definition, then create a workflow instance with your input data.</p>
+              <h4 class="font-semibold text-text-primary mb-1 font-mono">Submit with input</h4>
+              <p class="text-sm text-text-secondary">Create a workflow instance with your input data — no tokens required locally.</p>
             </div>
           </div>
           <div class="flex gap-4 items-start">
@@ -353,35 +354,24 @@
             <span class="font-mono text-sm text-text-tertiary">terminal</span>
           </div>
           <div class="p-6 overflow-x-auto console-code">
-            <pre class="font-mono text-[0.8125rem] leading-relaxed"><span class="text-text-disabled"># Clone and start</span>
-<span class="text-amber">$</span> <span class="text-text-primary">git clone https://github.com/kruxia/kruxiaflow.git</span>
-<span class="text-amber">$</span> <span class="text-text-primary">cd kruxiaflow</span>
-<span class="text-amber">$</span> <span class="text-text-primary">./docker up --examples</span>
+            <pre class="font-mono text-[0.8125rem] leading-relaxed"><span class="text-text-disabled"># Fetch and start — no clone, no auth setup</span>
+<span class="text-amber">$</span> <span class="text-text-primary">curl -fsSL https://kruxiaflow.com/quickstart/docker-compose.yml \</span>
+    <span class="text-text-primary">-o docker-compose.yml</span>
+<span class="text-amber">$</span> <span class="text-text-primary">ANTHROPIC_API_KEY=sk-... docker compose up -d</span>
 
-<span class="text-text-disabled"># Get access token</span>
-<span class="text-amber">$</span> <span class="text-text-primary">CLIENT_SECRET=$(grep KRUXIAFLOW_CLIENT_SECRET .env | cut -d= -f2)</span>
-<span class="text-amber">$</span> <span class="text-text-primary">TOKEN=$(curl -s -X POST http://localhost:8080/api/v1/oauth/token \</span>
-    <span class="text-text-primary">-d "grant_type=client_credentials" \</span>
-    <span class="text-text-primary">-d "client_id=kruxiaflow-docker-client" \</span>
-    <span class="text-text-primary">-d "client_secret=$CLIENT_SECRET" | jq -r '.access_token')</span>
-
-<span class="text-text-disabled"># Deploy workflow definition</span>
+<span class="text-text-disabled"># Deploy a budgeted workflow definition</span>
 <span class="text-amber">$</span> <span class="text-text-primary">curl -X POST http://localhost:8080/api/v1/workflow_definitions \</span>
-    <span class="text-text-primary">-H "Authorization: Bearer $TOKEN" \</span>
     <span class="text-text-primary">-H "Content-Type: text/yaml" \</span>
-    <span class="text-text-primary">--data-binary @examples/04-moderate-content.yaml</span>
+    <span class="text-text-primary">--data-binary @workflow.yaml</span>
 
-<span class="text-text-disabled"># Run the workflow</span>
+<span class="text-text-disabled"># Run it</span>
 <span class="text-amber">$</span> <span class="text-text-primary">WORKFLOW_ID=$(curl -s -X POST http://localhost:8080/api/v1/workflows \</span>
-    <span class="text-text-primary">-H "Authorization: Bearer $TOKEN" \</span>
-    <span class="text-text-primary">-H "Content-Type: application/json" \</span>
-    <span class="text-text-primary">-d '{"definition_name":"moderate_content", "input":</span> \
-    <span class="text-text-primary">      {"user_content":"Check out this amazing project!"}}' \</span>
+    <span class="text-text-primary">-d '{"definition_name":"quickstart_research", "input":</span> \
+    <span class="text-text-primary">      {"topic":"why do agent costs spiral?"}}' \</span>
     <span class="text-text-primary">| jq -r '.workflow_id')</span>
 
-<span class="text-text-disabled"># Track costs</span>
-<span class="text-amber">$</span> <span class="text-text-primary">curl -s http://localhost:8080/api/v1/workflows/$WORKFLOW_ID/cost/history \</span>
-    <span class="text-text-primary">-H "Authorization: Bearer $TOKEN" | jq</span></pre>
+<span class="text-text-disabled"># See what it cost</span>
+<span class="text-amber">$</span> <span class="text-text-primary">curl -s http://localhost:8080/api/v1/workflows/$WORKFLOW_ID/cost/history | jq</span></pre>
           </div>
         </div>
       </div>
@@ -506,7 +496,7 @@
                 <h3 class="text-2xl font-bold text-text-primary mb-3">LLM with multi-provider fallback</h3>
                 <p class="text-text-secondary leading-relaxed mb-4">
                   Moderate user content with a $0.10 budget limit per request.
-                  Try Claude Haiku first—if unavailable, fall back to GPT-4o-mini, then Gemini Flash Lite.
+                  Try Claude Haiku first—if unavailable, fall back to GPT-5.4 Mini, then Gemini 2.5 Flash-Lite.
                   Pure YAML workflow with automatic retries and exponential backoff.
                 </p>
                 <ul class="space-y-2 text-sm text-text-secondary mb-6">
@@ -537,8 +527,8 @@
     <span class="text-amber">parameters</span><span class="text-text-tertiary">:</span>
       <span class="text-amber">model</span><span class="text-text-tertiary">:</span>
         <span class="text-text-tertiary">-</span> anthropic/claude-haiku-4-5-20251001  <span class="text-text-disabled"># Try first</span>
-        <span class="text-text-tertiary">-</span> openai/gpt-4o-mini                   <span class="text-text-disabled"># Fallback</span>
-        <span class="text-text-tertiary">-</span> google/gemini-2.0-flash-lite         <span class="text-text-disabled"># Last resort</span>
+        <span class="text-text-tertiary">-</span> openai/gpt-5.4-mini                   <span class="text-text-disabled"># Fallback</span>
+        <span class="text-text-tertiary">-</span> google/gemini-2.5-flash-lite         <span class="text-text-disabled"># Last resort</span>
       <span class="text-amber">prompt</span><span class="text-text-tertiary">:</span> <span class="text-text-primary">|
         You are a content moderation assistant.
         Analyze the following text and determine
