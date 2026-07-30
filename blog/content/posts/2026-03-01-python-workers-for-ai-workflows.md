@@ -2,6 +2,7 @@
 title = "Python Workers for AI Workflows"
 date = 2026-03-01
 description = "Kruxia Flow now supports external Python workers, bringing pandas, scikit-learn, and the full data science ecosystem into durable workflow execution."
+published = true
 
 [taxonomies]
 tags = [ "python", "ai", "workflows", "workers", "opensource",]

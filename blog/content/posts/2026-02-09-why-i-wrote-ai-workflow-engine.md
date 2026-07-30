@@ -2,6 +2,7 @@
 title = "Why I Wrote an AI Workflow Engine"
 date = 2026-02-09
 description = "In AI applications, LLM cost is an application concern."
+published = true
 
 [taxonomies]
 tags = [ "ai", "rust", "workflows", "opensource"]
